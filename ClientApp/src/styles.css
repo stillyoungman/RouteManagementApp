@@ -22,3 +22,8 @@ input[type=text]:not(.browser-default):focus:not([readonly]){
 .notvsbl{
     visibility: hidden;
 }
+.error-message{
+    color: rgba(207, 30, 30, 0.863);
+    text-align: center;
+    margin-top: 20px;
+}
