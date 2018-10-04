@@ -21,7 +21,7 @@ export class AuthService {
 
   authenticate(loginUserDto: { email: string, password: string }) {
     this.api.authenticate(loginUserDto).subscribe(res => {
-      localStorage.setItem('t', res.json().access_token); 
+      localStorage.setItem('t', res.json().access_token);
       this.app.router.navigate(["create-route"]);
 
       this.isAuthenticated = true;
@@ -33,6 +33,15 @@ export class AuthService {
   }
 
   register(userDto: { name: string, email: string, password: string }) {
-    this.api.register(userDto);
+    this.api.register(userDto).subscribe( res => {
+      this.authenticate({ email: userDto.email, password: userDto.password });
+    }, err => {
+      this.errorMessage = err.json().message;
+    })
+  }
+
+  logout() {
+    this.isAuthenticated = false;
+    localStorage.removeItem('t');
   }
 }

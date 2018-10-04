@@ -45,15 +45,7 @@ export class WebApiService {
 
 
   register(userDto) {
-    this.http.post(this.authPath + "register", userDto)
-      .subscribe( res => {
-          if (res.status == 200){
-            
-          } else {
-            // setMessage(res.json().message);
-          }
-        // localStorage.setItem('t', res.json().access_token); 
-      })
+    return this.http.post(this.authPath + "register", userDto);
   }
 
   authenticate(loginUserDto){
