@@ -1,0 +1,27 @@
+.wrap {
+    display:flex;
+    flex-direction: row-reverse;
+    height: 34px;
+    margin:4px 0;
+}
+.chip {
+    /* padding: 0 7px; */
+    cursor: pointer;
+    /* min-width:50px; */
+    width:88px;
+    font-size:1em; 
+    margin-right:10px;
+    order: 1;
+    background-color:#CCD1D1;
+}
+.chip:hover{
+    background-color:#e4e4e4;
+    color:#34495E;
+    transform: scale(1.03);
+}
+.chip>p {
+    margin:0 3px;
+    padding:0 0 0 10px;
+    font-size:1.2em;
+    /* display:block; */
+}

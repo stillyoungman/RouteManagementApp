@@ -1,0 +1,22 @@
+.custom {
+    cursor: pointer;
+}
+.pict {
+    height:32px;
+    width:32px;
+    border-radius:50%;
+    float:left;
+    background-color:yellowgreen;
+    margin:0 10px 0 0;
+}
+.chip {
+    padding: 0 20px 0 0;
+}
+.chip:hover{
+    background-color:#CCD1D1;
+}
+.custom>p {
+    margin:0;
+    padding:0 0 0 10px;
+}
+

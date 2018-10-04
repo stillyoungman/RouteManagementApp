@@ -1,0 +1,44 @@
+#route-elements {
+    display:flex;
+    flex-direction: column;
+}
+#route-items {
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    margin-right:5px;
+    /* border: 1px solid blueviolet; */
+}
+#item-card {
+    height: 280px;
+    margin-bottom: 20px;
+    /* border: 1px solid blueviolet; */
+    display:flex;
+    align-items:center;
+    justify-content: center;
+}
+#items {
+    /* min-height:180px; */
+    /* max-height: auto; */
+    width:500px;
+    margin-bottom: 20px;
+    padding:10px 20px;
+    /* border: 1px solid blueviolet; */
+    display: flex;
+    flex-wrap:wrap;
+    overflow-wrap: break-word;
+    overflow-x: clip;
+    align-self: center;
+    align-content: flex-start;
+    /* justify-content: space-around; */
+}
+#route-buttons {
+    display: flex;
+    justify-content: center;
+    /* border: 1px solid blueviolet; */
+}
+#route-buttons button {
+    margin:5px 20px;
+    background-color:transparent;
+}

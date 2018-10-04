@@ -1,0 +1,16 @@
+#wrap{
+    width:300px;
+    margin:auto;
+    padding-top:30px;
+}
+.btns{
+    display: flex;
+    justify-content: space-around;
+}
+h4{
+    margin-bottom:20px;
+    color: #209488;
+}
+.password {
+    font-size:1.4em;
+}

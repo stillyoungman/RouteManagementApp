@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css?family=Ubuntu');
+
+#layout-topbar {
+    background-color: rgba(247, 249, 249, 0.712);
+    display:block;
+    height:100px;
+    width:100%;
+    padding:0;
+    margin:5px 0 0 0;
+    /* border-radius:10px; */
+}
+.logo {
+    display:inline-block;
+    margin-top:5px;
+    margin-left: 5%;
+    cursor: pointer;
+}
+img {
+    height: 90px;
+}
+#name {
+    display: inline-block;
+    font-family: 'Ubuntu', sans-serif;
+    color: #ECF0F1;
+    font-size: 2em;
+    margin: 10px 25px;
+    vertical-align: top;
+}
+.menu {
+    float: right;
+    width: 200px;
+    height: 90px;
+    margin-right:5%;
+    /* border: 3px solid #B3E5FC; */
+}
+.auth {
+    text-align: center;
+}
+.mbtn {
+    background-color:transparent;
+    font-size: 1em;
+}
+
+

@@ -1,0 +1,16 @@
+#wrap{
+    width:300px;
+    margin:auto;
+    padding-top:80px;
+}
+#password {
+    font-size:1.4em;
+}
+.btns{
+    display: flex;
+    justify-content: space-around;
+}
+h3{
+    margin-bottom:20px;
+    color: #209488;
+}

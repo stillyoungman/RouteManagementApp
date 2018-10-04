@@ -1,0 +1,22 @@
+<form>
+  <input id="name" name="name" type="text" [(ngModel)]="Element.item.name">
+  <div class="opt-wrap">
+  <div class="opt-item">
+    <div class="opt">
+      <span class="opt-text">Travel time</span>
+      <mat-slide-toggle #tt [color]="'accent'" (change)="ttChanged(tt.checked)" [checked]="Element.item.isTimeRequired"></mat-slide-toggle>
+    </div>
+    <input class='opt-input' name="travel-time" [disabled]="!tt.checked" type="number" min=1 placeholder="minutes" [(ngModel)]="Element.item.travelTime">
+  </div>
+  <div class="opt-item">
+    <div class="opt">
+      <span class="opt-text">Date</span>
+      <mat-slide-toggle #dt [color]="'accent'" (change)="dtChanged(dt.checked)" [checked]="Element.item.isDateRequired"></mat-slide-toggle>
+    </div>
+    <input class='opt-input' name="date" [disabled]="!dt.checked" type="date" min=1 [(ngModel)]="Element.item.date">
+  </div>
+</div>
+  <textarea placeholder="Apply comment" [(ngModel)]="Element.item.comment" id="comment" name="comment"></textarea>
+</form>
+
+<div id="dist">Distance: {{Element.item.distance}}m</div>

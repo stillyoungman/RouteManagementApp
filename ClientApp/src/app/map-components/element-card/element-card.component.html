@@ -1,0 +1,10 @@
+<div *ngIf="_element" id="card">
+  <div (click)="close()" id="close"></div>
+  <!-- <div>{{_element.type}}</div> -->
+  <div id="filler-wrap" [ngSwitch]="type">
+    <segment-filler [Element]="_element" *ngSwitchCase="'segment'"></segment-filler>
+    <point-filler *ngSwitchDefault [Element]="_element"></point-filler>
+    <!-- <div >{{type}}</div> -->
+  </div>
+
+</div>

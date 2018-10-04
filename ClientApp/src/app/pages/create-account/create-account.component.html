@@ -1,0 +1,26 @@
+<div id="wrap">
+    <h4>Who are you?</h4>
+    <div class="input-field col s6">
+      <input id="name" type="text" [(ngModel)]="name">
+      <label for="name">Your Name</label>
+    </div>
+    <div class="input-field col s6">
+      <input id="email" type="email" [(ngModel)]="email">
+      <label for="email">Email</label>
+    </div>
+    <div class="input-field col s6">
+        <input id="password" type="password" class="password"  [(ngModel)]="password">
+        <label for="password">Password</label>
+      </div>
+      <div class="input-field col s6">
+          <input id="conf-password" type="password" class="password">
+          <label for="conf-password">Confirm password</label>
+        </div>
+    <div class="btns">
+    <button class="btn waves-effect waves-light grey lighten-1" (click)="cancel()">
+      <i class="material-icons">close</i>
+    </button><button class="btn waves-effect waves-light green lighten-1" (click)="submit()" >
+      <i class="material-icons" style="margin:0 15px">arrow_forward_ios</i>
+    </button>
+    </div>
+    </div>

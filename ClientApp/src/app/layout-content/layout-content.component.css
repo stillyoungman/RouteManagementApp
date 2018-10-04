@@ -1,0 +1,11 @@
+/* #wrap {
+    background-color: #F7F9F9;
+    padding:10px 15px;
+    width:auto;
+} */
+
+.search-wrapper {
+    padding: 0 45px 0 30px;
+    max-width: 300px;
+    border: 1px solid grey;
+}

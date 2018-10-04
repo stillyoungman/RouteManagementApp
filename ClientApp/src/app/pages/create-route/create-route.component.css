@@ -1,0 +1,28 @@
+.wrap {
+    display: flex;
+    flex-wrap:wrap;
+    /* border: 3px solid blueviolet; */
+    padding:15px 20px;
+    width:auto;
+}
+#map-area {
+    min-width:800px;
+    height: 700px;
+    flex-grow: 11;
+    order: 1;
+    margin-right:5px;
+    /* border: 1px solid blueviolet; */
+}
+#elements {
+    flex-grow: 4;
+    order: 2;
+}
+#map {
+    margin: 5px 5px 5px 5px;
+    height: 500px;
+    min-width: 300px;
+    border-radius:3px;
+    border: 1px solid #CCD1D1;
+}
+
+

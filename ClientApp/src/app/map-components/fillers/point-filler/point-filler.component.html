@@ -1,0 +1,20 @@
+<form>
+  <input id="name" name="name" type="text" [(ngModel)]="Element.marker.name">
+  <div class="opt-wrap" [class.start]="isStartOrEnd">
+  <div class="opt-item" *ngIf="!isStartOrEnd">
+    <div class="opt">
+      <span class="opt-text">Rest</span>
+      <mat-slide-toggle #rt [color]="'accent'" (change)="rtChanged(rt.checked)" [checked]="Element.marker.isRestRequired"></mat-slide-toggle>
+    </div>
+    <input class='opt-input' name="rest-time" [disabled]="!rt.checked" type="number" min=1 placeholder="minutes" [(ngModel)]="Element.marker.rest">
+  </div>
+  <div class="opt-item">
+    <div class="opt">
+      <span class="opt-text">Date</span>
+      <mat-slide-toggle #dt [color]="'accent'" (change)="dtChanged(dt.checked)" [checked]="Element.marker.isDateRequired"></mat-slide-toggle>
+    </div>
+    <input class='opt-input' name="date" [disabled]="!dt.checked" type="date" min=1 [(ngModel)]="Element.marker.date">
+  </div>
+</div>
+  <textarea placeholder="Apply comment" [(ngModel)]="Element.item.comment" id="comment" name="comment"></textarea>
+</form>

@@ -1,0 +1,96 @@
+.chip {
+    padding: 0 20px 0 0;
+    cursor: pointer;
+    min-width:50px;
+    font-size:1em; 
+    margin-right:10px;
+}
+.chip:hover{
+    background-color:#CCD1D1;
+}
+.chip>p {
+    margin:0 3px;
+    padding:0 0 0 10px;
+    font-size:1.2em;
+    /* display:block; */
+}
+#item {
+    display:flex;
+    float:left;
+    justify-content:center;
+    margin: 0 10px 0 0;
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+#item:hover {
+    /* border:2px solid #34495E; */
+    transform: scale(1.06);
+}
+.start {
+    background-color: yellowgreen;
+}
+.start:hover{
+    background-color:rgba(144, 223, 55, 0.795);
+}
+.start:hover>.checkpoint {
+    background-color:rgb(62, 81, 100);
+}
+.end {
+    background-color: rgb(205, 50, 50);
+}
+.end:hover {
+    background-color: rgba(219, 62, 62, 0.904);
+}
+.checkpoint {
+    align-self: center; 
+    height: 12px;
+    width: 12px;
+    border-radius: 50%;
+    background-color: black;
+}
+.checkpoint:hover{
+    background-color: rgb(62, 81, 100);
+}
+.wrap {
+    height: 34px;
+    margin: 4px 0;
+}
+/* .chip {
+    padding: 0 20px 0 0;
+    cursor: pointer;
+    min-width:50px;
+    font-size:1em; 
+    margin-right:10px;
+}
+.chip:hover{
+    background-color:#CCD1D1;
+} */
+/* .chip>p {
+    margin:0 3px;
+    padding:0 0 0 10px;
+    font-size:1.2em;
+}
+#item {
+    display:flex;
+    float:left;
+    justify-content:center;
+    margin: 0 10px 0 0;
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+}
+.start {
+    background-color: yellowgreen;
+}
+.end {
+    background-color: rgb(205, 50, 50);
+}
+.checkpoint {
+    align-self: center; 
+    height: 12px;
+    width: 12px;
+    border-radius: 50%;
+    background-color: black;
+} */

@@ -1,0 +1,12 @@
+<span class="wrap">
+  <span id="item" [class.start]="type == 'start' || type == 'checkpoint'" [class.end]="type == 'finish'">
+    <span [class.checkpoint]="type=='checkpoint'"></span>
+  </span> 
+</span>
+
+<!-- <div [class.chip]="isStartOrEnd()">
+    <div id="item" [class.start]="type == 'start' || type == 'checkpoint'" [class.end]="type == 'finish'">
+      <div [class.checkpoint]="type=='checkpoint'"></div>
+    </div>
+    <span *ngIf="isStartOrEnd()">{{type}}</span>
+  </div> -->

@@ -1,0 +1,7 @@
+<span class="wrap">
+    <span class="chip" (click)="picked('segment')">
+         
+      </span>
+      <chip-point *ngIf="!isFinish" [Point]="Segment" (click)="picked('checkpoint')"></chip-point>
+</span>
+

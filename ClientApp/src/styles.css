@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+/* @import '~@angular/material/prebuilt-themes/indigo-pink.css'; */
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+/* @import '~@angular/material/prebuilt-themes/pink-bluegrey.css'; */
+/* @import '~@angular/material/prebuilt-themes/purple-green.css'; */
+body {
+    margin:0;
+    padding:0;
+    background-color: #F7F9F9;
+}
+* {
+    font-family: 'Poppins', sans-serif;
+}
+input[type=text]:not(.browser-default):focus:not([readonly]){
+    border-bottom: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+.back-img{
+    background-image:url("assets/img/main.jpeg");
+}
+.notvsbl{
+    visibility: hidden;
+}
