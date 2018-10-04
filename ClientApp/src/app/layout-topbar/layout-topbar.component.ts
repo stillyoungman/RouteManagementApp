@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApplicationService } from '../core/services/application.service';
+import { AuthService } from '../core/services/auth.service';
 // import {MatButtonModule} from '@angular/material/button';
 
 @Component({
@@ -10,10 +11,10 @@ import { ApplicationService } from '../core/services/application.service';
 })
 export class LayoutTopbarComponent implements OnInit {
 
-  constructor(private app: ApplicationService) { }
+  constructor(private app: ApplicationService, private authService: AuthService) { }
 
   ngOnInit() {
-    console.log(this.app.url === '/login')
+    
   }
 
   get isVisible() {
@@ -23,6 +24,10 @@ export class LayoutTopbarComponent implements OnInit {
 
   login(){
     this.app.redirectTo("/login");
+  }
+
+  logout(){
+    this.authService.logout();
   }
 
   create(){

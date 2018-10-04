@@ -7,15 +7,27 @@
   </a>
   
   <div class="menu" >
-    <div *ngIf="true" class="auth">
-      <!-- <div class="btn">Sign In</div> -->
+    <div *ngIf="!authService.isAuthenticated;else profile" class="auth">
       <button mat-button class="mbtn" (click)="login()">
         Sign In
       </button>
       <div style="margin:0;">or</div>
-      
       <button mat-button class="mbtn" (click)="create()">Create Account</button>
     </div>
-    <div *ngIf="false" class="profile">Profile</div>
+    <ng-template #profile>
+      <div id="profile">
+        <img src="../../assets/img/acc_img.png" id="acc-img">
+        <span id="user-name">Name Name</span>
+      </div>
+        <div style="display:flex">
+            <div class="prof-btn" id="drop-down">
+                <i class="material-icons">expand_more</i>
+            </div>
+            <div class="prof-btn" id="logout" (click)="logout()">
+                <i class="material-icons">exit_to_app</i>
+            </div>
+          </div>
+      
+    </ng-template>
   </div>
 </div>
