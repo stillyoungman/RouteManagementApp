@@ -22,18 +22,6 @@ export class LayoutTopbarComponent implements OnInit {
       this.app.url === "/create-account");
   }
 
-  login(){
-    this.app.redirectTo("/login");
-  }
-
-  logout(){
-    this.authService.logout();
-  }
-
-  create(){
-    this.app.redirectTo("/create-account")
-  }
-
   logoLink(){
     if(this.app.url === "/") this.app.router.navigate(["/create-route"])
     else if (this.app.url === "/create-route") this.app.router.navigate(["/"])

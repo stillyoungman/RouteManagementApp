@@ -24,6 +24,9 @@ import { SegmentFillerComponent } from './map-components/fillers/segment-filler/
 import { PointFillerComponent } from './map-components/fillers/point-filler/point-filler.component';
 import { RouteFillerComponent } from './map-components/fillers/route-filler/route-filler.component';
 
+//another-components
+import { AuthCardComponent } from './another-components/auth-card/auth-card.component';
+
 //pages
 import { IndexComponent } from './pages/index/index.component';
 import { CreateRouteComponent } from './pages/create-route/create-route.component';
@@ -33,6 +36,8 @@ import { CreateAccountComponent } from './pages/create-account/create-account.co
 import { TestAreaComponent } from './test-area/test-area.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
+import { NamePipe } from './core/helpers/name.pipe';
+
 
 @NgModule({
   declarations: [
@@ -53,7 +58,9 @@ import { HttpModule } from '@angular/http';
     RouteFillerComponent,
     IndexComponent,
     LoginComponent,
-    CreateAccountComponent
+    CreateAccountComponent,
+    NamePipe,
+    AuthCardComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,53 @@
+.menu {
+    float: right;
+    /* width: 200px; */
+    height: 90px;
+    margin-top:5px;
+    margin-right:100px;
+    /* border: 1px solid rgb(0, 174, 255); */
+}
+.auth {
+    text-align: center;
+}
+#or{
+    margin:0;
+    font-size:0.7em;
+    cursor: default;
+}
+.mbtn {
+    background-color:transparent;
+    font-size: 1em;
+}
+#profile{
+    min-width:170px;
+    display: flex;
+    flex-wrap:wrap;
+    justify-content: space-around;
+}
+#acc-img{
+    width: 60px;
+    height: 60px;
+}
+#user-name{
+    align-self: center;
+    font-size: 1.3em;
+    margin: 0 10px;
+    cursor: default;
+}
+.prof-btn{
+    height: 30px;
+    border-radius:2px;
+    display: flex;
+    cursor: pointer;
+    justify-content:center;
+    align-items: center;
+}
+#drop-down{
+    width: 85%;
+}
+#logout{
+    width:15%;
+}
+.prof-btn:hover{
+    background-color:rgba(208, 209, 209, 0.555);
+}
