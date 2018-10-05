@@ -7,6 +7,10 @@ namespace RouteManagementApp.Data
 {
     public class RouteRepository : IRouteRepository
     {
+        private MainContext _context;
+        public RouteRepository(MainContext context){
+            this._context = context;
+        }
         public void Add(Route r)
         {
             throw new NotImplementedException();

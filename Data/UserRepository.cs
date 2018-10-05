@@ -26,7 +26,7 @@ namespace RouteManagementApp.Data
         }
         public User GetUserByEmail(string email)
         {
-            throw new System.NotImplementedException();
+            return _context.Users.FirstOrDefault( user => user.Email == email);
         }
     }
 }

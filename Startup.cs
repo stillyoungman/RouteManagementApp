@@ -49,9 +49,9 @@ namespace RouteManagementApp
             services.AddDbContext<MainContext>(options => options.UseSqlServer(tldbStr));
 
             services.AddScoped<IRouteRepository, MockRouteRepository>();
-            services.AddScoped<IUserRepository,MockUserRepository>();
-            services.AddScoped<IUserService,MockUserService>();
-            services.AddScoped<IUnitOfWork,MockUnitOfWork>();
+            services.AddScoped<IUserRepository,UserRepository>();
+            services.AddScoped<IUserService,UserService>();
+            services.AddScoped<IUnitOfWork,UnitOfWork>();
             
             services.AddAutoMapper();
 
