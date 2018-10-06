@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers } from '@angular/http';
+import { Http, Headers, RequestOptions } from '@angular/http';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ApplicationService } from './application.service';
 import { Observable } from 'rxjs';
+import { Route } from '../models/route';
 
 @Injectable({
   providedIn: 'root'
@@ -30,11 +31,16 @@ export class WebApiService {
   get authPath() {
     return this.BASE_URL + "api/auth/";
   }
+  get routeApiPath(){
+    console.log(this.BASE_URL);
+    return this.BASE_URL + "api/Route/";
+  }
 
   getUserRoutes() {
 
   }
 
+  //remove in PRODUCTION
   _debugGetToken(userDto){
     this.http.post(this.authPath + 'token',userDto)
     .subscribe( res => {
@@ -42,7 +48,11 @@ export class WebApiService {
     })
   }
 
-
+  saveRoute(route: Route){
+    return this.http.post(this.routeApiPath + "SaveRoute", route, new RequestOptions({
+      headers: this.tokenHeader
+    })); 
+  }
 
   register(userDto) {
     return this.http.post(this.authPath + "register", userDto);

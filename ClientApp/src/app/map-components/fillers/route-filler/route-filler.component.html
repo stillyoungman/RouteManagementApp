@@ -1,3 +1,12 @@
-<p>
-  route-filler works!
-</p>
+<form>
+  <input id="name" name="name" placeholder="Route name" [(ngModel)]="Route.name">
+  <span></span>
+  <label name="description" for="description">Description</label>
+  <textarea id="description" name="description" placeholder="Describe your route" ></textarea>
+  <button 
+    class="save btn waves-effect waves-light blue-grey lighten-1"
+    (click)="save()" >
+    Save
+    <i class="material-icons right">save</i>
+  </button>
+</form>

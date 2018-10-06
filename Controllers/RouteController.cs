@@ -7,6 +7,7 @@ using RouteManagementApp.Helpers;
 using Microsoft.AspNetCore.Authorization;
 using AutoMapper;
 using RouteManagementApp.Services;
+using RouteManagementApp.Data.Access;
 
 namespace RouteManagementApp.Controllers
 {
@@ -69,7 +70,7 @@ namespace RouteManagementApp.Controllers
         }
 
         [Authorize]
-        [HttpGet("[action]")]
+        [HttpPost("[action]")]
         public IActionResult SaveRoute([FromBody] RouteDto routeDto)
         {
             try
@@ -77,7 +78,7 @@ namespace RouteManagementApp.Controllers
                 var route = _mapper.Map<Route>(routeDto);
                 route.UserId = HttpContext.GetUserId();
                 _rep.Add(route);
-                _uof.CompleteAsync();
+                _uof.Complete();
                 return Ok(new
                 {
                     routeId = route.RouteId

@@ -9,9 +9,9 @@ namespace RouteManagementApp.Services
         public UnitOfWork(MainContext context){
             _context = context;
         }
-        public void CompleteAsync()
+        public void Complete()
         {
-            _context.SaveChangesAsync();
+            _context.SaveChanges();
         }
     }
 }
