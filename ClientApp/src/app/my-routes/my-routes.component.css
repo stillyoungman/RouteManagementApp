@@ -1,0 +1,6 @@
+#wrap{
+    background-color:rgba(255, 166, 0, 0.397);
+    max-width:1000px;
+    min-width: 700px;
+    margin: 0 auto;
+}
