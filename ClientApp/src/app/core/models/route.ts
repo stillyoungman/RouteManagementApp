@@ -8,8 +8,8 @@ export class Route {
     //TODO: add general information fields
     name: string;
     segments: Segment[] = [];
-    tags;//??
-
+    description;
+    
     constructor(segments: Segment[]){ 
         this.segments = segments;
     }
@@ -22,7 +22,6 @@ export class Route {
         var result = {
             name: this.name,
             segments: this.segments
-
         }
         //capitalizeFirstLetter(result);
         return result;
