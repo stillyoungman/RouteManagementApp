@@ -9,15 +9,21 @@
   <ng-template #profile>
     <div id="profile">
       <img src="../../../assets/img/acc_img.png" id="acc-img">
-      <span id="user-name">{{name | name }}</span>
+      <span id="user-name">{{name | name}}</span>
     </div>
-      <div style="display:flex">
+      <div class="wrap">
           <div class="prof-btn" id="drop-down">
               <i class="material-icons">expand_more</i>
+              <div id="drop-content">
+                  <a class="drop-item" routerLink="/my-routes">My routes</a>
+                  <!-- <a class="drop-item">item2</a> -->
+              </div>
           </div>
           <div class="prof-btn" id="logout" (click)="logout()">
               <i class="material-icons">exit_to_app</i>
           </div>
-        </div> 
+          
+        </div>
+        
   </ng-template>
 </div>

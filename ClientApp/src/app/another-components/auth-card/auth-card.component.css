@@ -44,10 +44,41 @@
 }
 #drop-down{
     width: 85%;
+    height:30px;
+}
+.wrap{
+    display:flex;
+}
+#drop-down:hover #drop-content{
+    display: block;
 }
 #logout{
     width:15%;
 }
 .prof-btn:hover{
-    background-color:rgba(208, 209, 209, 0.555);
+    background-color:rgba(208, 209, 209, 0.137);
+}
+#drop-content{
+    display:none;
+    position: absolute;
+    margin-top:28px;
+    /* padding-top:10px; */
+    /* display:block; */
+    width:140px;
+    /* height:100px; */
+    z-index:1;
+}
+.drop-item{
+    /* background-color:rgba(255, 255, 255, 0.918); */
+    background-color:rgba(208, 209, 209, 0.425);
+   
+    border-radius:2px;
+    display: block;
+    padding:3px 10px;
+    color:black;
+    text-decoration: none;
+}
+.drop-item:hover{
+    background-color: rgba(247, 249, 249, 0.712);
+    border:1px solid rgb(166, 167, 167);
 }

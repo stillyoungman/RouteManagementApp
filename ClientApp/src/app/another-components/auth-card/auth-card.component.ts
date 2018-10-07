@@ -11,21 +11,29 @@ export class AuthCardComponent implements OnInit {
 
   name;
 
-  constructor( private auth: AuthService, private app: ApplicationService) { }
-
-  ngOnInit() {
-    this.name = "Kyle Lebowski";
+  constructor(private auth: AuthService, private app: ApplicationService) {
+    
   }
 
-  login(){
+  ngOnInit() {
+    
+  }
+
+  ngDoCheck(){
+    if (this.auth.isAuthenticated) {
+      this.name = this.auth.claims.name;
+    }
+  }
+
+  login() {
     this.app.redirectTo("/login");
   }
 
-  logout(){
+  logout() {
     this.auth.logout();
   }
 
-  create(){
+  create() {
     this.app.redirectTo("/create-account")
   }
 
