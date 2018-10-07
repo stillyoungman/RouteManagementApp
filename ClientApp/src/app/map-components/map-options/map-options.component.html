@@ -1,8 +1,36 @@
 <div id="options">
-  <div id="btn-types">
-      <div style="text-align: center;">Types of point: </div>
-      <button class="flex-item" (click)="changeType('inter')">Intermediate</button>
-      <button class="flex-item" (click)="changeType('checkpoint')">Checkpoit</button>
-      <button class="flex-item" (click)="changeType('finish')">End</button>
+  <div id="btn-types" *ngIf="ms.isStarted && !ms.isFinished">
+    <div style="text-align: center;align-self:center;">Types of point:</div>
+    <div class="item chip" 
+      (click)="changeType('inter')"
+      [class.active]="type === 'inter'">
+      <div id="inter"></div>
+      <span style="margin:0 0 0 7px">
+        Intermediate
+      </span>
+    </div>
+    <div class="chip item" 
+      (click)="changeType('checkpoint')"
+      [class.active]="type === 'checkpoint'">
+      <div id="checkpoint">
+        <div id="dot"></div>
+      </div>
+      <span style="margin:0 0 0 7px">
+        Checkpoint
+      </span>
+    </div>
+    <div class="item chip" 
+    (click)="changeType('finish')"
+    [class.active]="type === 'finish'">
+      <div id="end"></div>
+      <span style="margin:0 0 0 7px">
+          End
+      </span>
+      </div>
+    <!-- <button class="flex-item chip" (click)="changeType('inter')">Intermediate</button>
+      <button class="flex-item chip" (click)="changeType('checkpoint')">Checkpoit</button>
+      <button class="flex-item chip" (click)="changeType('finish')">End</button> -->
   </div>
+
+
 </div>
