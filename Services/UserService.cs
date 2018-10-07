@@ -49,7 +49,7 @@ namespace RouteManagementApp.Services
             user.PasswordSalt = passwordSalt;
 
             _rep.Add(user);
-            _uof.CompleteAsync();
+            _uof.Complete();
             return user;
         }
 

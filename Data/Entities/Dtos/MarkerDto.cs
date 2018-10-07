@@ -7,7 +7,7 @@ namespace RouteManagementApp.Entities
         public int MarkerId { get; set; }
         public string Name { get; set; }
         public string Type {get; set; }
-        public string LatLang {get; set;}
+        public string Location {get; set;}
         public string Properties { get; set; }
         
     }
