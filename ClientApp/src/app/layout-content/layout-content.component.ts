@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../core/services/auth.service';
+import { MapService } from '../core/services/map.service';
 
 @Component({
   selector: 'layout-content',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LayoutContentComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private auth: AuthService,
+    private ms: MapService) { }
 
   ngOnInit() {
+  }
+
+  routeChanged(){
+    this.auth.errorMessage = undefined;
+    this.ms.reset();
   }
 
 }

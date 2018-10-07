@@ -24,8 +24,8 @@ export class LayoutTopbarComponent implements OnInit {
 
   logoLink(){
     if(this.app.url === "/") this.app.router.navigate(["/create-route"])
-    else if (this.app.url === "/create-route") this.app.router.navigate(["/"])
     else if (this.app.url === "/create-account" || this.app.url === "/login" ) this.app.back();
+    else this.app.router.navigate(["/"]);
   }
 
 
