@@ -4,6 +4,7 @@ import { Injectable, EventEmitter } from '@angular/core';
 import { MarkerStorage } from '../models/markerStorage';
 import { SegmentStorage } from '../models/segmentStorage';
 import { IElement } from '../interfaces/IElement';
+import { Route } from '../models/route';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,7 @@ export class RouteStorageService {
   constructor() {
     this._elements = [];
   }
-  public reset(){
+  public reset() {
     this._elements = [];
     this.markers = new MarkerStorage();
     this.segments = new SegmentStorage(this.map);
@@ -28,6 +29,16 @@ export class RouteStorageService {
 
   get elements() {
     return this._elements;
+  }
+
+  clear(){
+    this.segments.clear();
+  }
+
+  get route() {
+    let route = new Route(this.segments.segments);
+    route.name = "My Route";
+    return route;
   }
 
   init(map: google.maps.Map) {

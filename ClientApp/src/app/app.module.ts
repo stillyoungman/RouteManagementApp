@@ -37,6 +37,9 @@ import { TestAreaComponent } from './test-area/test-area.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { NamePipe } from './core/helpers/name.pipe';
+import { MyRoutesComponent } from './my-routes/my-routes.component';
+import { LoggedInGuard } from './core/helpers/loggedInGuard';
+
 
 
 @NgModule({
@@ -60,7 +63,8 @@ import { NamePipe } from './core/helpers/name.pipe';
     LoginComponent,
     CreateAccountComponent,
     NamePipe,
-    AuthCardComponent
+    AuthCardComponent,
+    MyRoutesComponent,
   ],
   imports: [
     BrowserModule,
@@ -73,7 +77,8 @@ import { NamePipe } from './core/helpers/name.pipe';
   ],
   providers: [
     RouteStorageService,
-    MapService
+    MapService,
+    LoggedInGuard
   ],
   bootstrap: [AppComponent]
 })

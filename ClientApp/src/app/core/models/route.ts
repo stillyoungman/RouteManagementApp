@@ -7,11 +7,20 @@ import { Segment } from "./segment";
 export class Route {
     //TODO: add general information fields
     name: string;
+    isShared:boolean;
+    location:string;
+    // distance:number;
     segments: Segment[] = [];
-    description;
+    description:string;
     
     constructor(segments: Segment[]){ 
         this.segments = segments;
+    }
+
+    get distance(){
+        var result = 0;
+        this.segments.forEach((value) => result += value.distance);
+        return result;
     }
 
     toJSON(){
@@ -21,7 +30,12 @@ export class Route {
     object2Model(){
         var result = {
             name: this.name,
+            distance: this.distance,
+            location: this.location,
+            description: this.description,
+            isShared: this.isShared,
             segments: this.segments
+
         }
         //capitalizeFirstLetter(result);
         return result;

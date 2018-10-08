@@ -2,10 +2,10 @@
     font-size:2em;
     border-bottom:none;
     color:#5D6D7E; 
-    margin-bottom:3px;
+    /* margin-bottom:3px; */
 }
 #name:focus {
-    color:#34495E;
+    /* color:#34495E; */
     border-bottom: none;
     box-shadow: none;
 }
@@ -18,12 +18,31 @@
     border-radius:3px;
     outline: none;
     resize: none;
-    margin: 4px 0;
+    /* margin: 4px 0; */
 }
-#description:focus {
+.c:focus {
     color:#34495E;
+}
+#location{
+    height:1em;
+    width:50%;
+    color:#5D6D7E; 
+    padding: 4px;
+    border:1px solid #9e9e9ed3;
+    border-radius:3px;
+    outline: none;
+    resize: none;
+    margin: 0 0 4px 0;
+    /* margin: 4px 0; */
 }
 .save {
     float:right;
-    margin:5px 23px 0 0;
+    margin:0 23px 0 0;
+}
+#dist{
+    float:right;
+    margin: 0 12px 0 0;
+}
+label {
+    margin-right:10px;
 }

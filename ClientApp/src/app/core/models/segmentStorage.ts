@@ -24,6 +24,14 @@ export class SegmentStorage implements Deserializable {
         this.last.push(section);
     }
 
+    clear(){
+        this.segments.forEach( (segment) => {
+            segment.sections.forEach( (section) => {
+                section.remove();
+            });
+        })
+    }
+
     addNext() {
         let sg = new Segment(`Segment #${this.segments.length + 1}`);
         if (this.last) {

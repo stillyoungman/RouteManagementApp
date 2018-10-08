@@ -16,36 +16,44 @@ export class RouteElementsComponent implements OnInit {
   private pickEmitter: EventEmitter<{}>;
 
   constructor(private routeStorage: RouteStorageService, private mapService: MapService) {
-    
-   }
+
+  }
 
   ngOnInit() {
     this.elements = this.routeStorage.elements;
     this.pickEmitter = this.routeStorage.elementPicked;
 
-    this.mapService.elementCreated.subscribe( element => {
+    this.mapService.elementCreated.subscribe(element => {
       this.elementCreatedHandler(element);
     })
   }
 
-  isStarted():boolean{
+  isStarted(): boolean {
     console.log("isStarted");
     return this.mapService.isStarted;
   }
-  get isFinished(){
+  get isFinished() {
     return this.mapService.isFinished;
   }
 
-  save(){
-    console.log(this.routeStorage.segments);
+  fillRoute() {
+    this.routeStorage.elementPicked.emit(this.routeStorage.route);
   }
 
-  picked(element){
-    console.log(element);
+  clearMap() {
+    this.mapService.clearMap();
+    // this.mapService.reset();
+    this.elements = this.routeStorage.elements;
+    this.routeStorage.elementPicked.emit(undefined);
+    // this.mapService.initMap();
+    console.log(this.routeStorage);
+  }
+
+  picked(element) {
     this.routeStorage.elementPicked.emit(element);
   }
 
-  elementCreatedHandler(element){
+  elementCreatedHandler(element) {
     if (element instanceof (Segment)) {
       this.elements.push(new SegmentElement(element));
       if (element.last.marker.type === "finish") {

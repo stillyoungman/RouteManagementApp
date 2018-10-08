@@ -15,10 +15,11 @@ export class MapService {
   latitude = 56.126838;
   longitude = 40.397072;
   followRoad = true;
-  isFinished = false;
+  
   private _map: google.maps.Map;
   private _markerType = "start";
   
+  private _finished = false;
   private _started = false;
 
   elementCreated = new EventEmitter(true);
@@ -28,20 +29,29 @@ export class MapService {
     this.directionsService = new google.maps.DirectionsService();
    }
   
-  public initMap(map: google.maps.Map) {
-    this._map = map;
-    this.routeStorage.init(map);
-       
+  public initMap(map?: google.maps.Map) {
+   
+    if(!this._map) { 
+      this._map = map;
+      this.routeStorage.init(map);
+     }
+    else { this._map.setOptions(this.mapOptions) }
+    
     this._map.addListener('click', (event) => {
       this.addMarker(event);
     });
   }
   public reset(){
     this.followRoad = true;
-    this.isFinished = false;
+    this._finished = false;
     this._markerType = "start";
     this._started = false;
     this.routeStorage.reset();
+  }
+  public clearMap(){
+    this.routeStorage.clear();
+    this.reset();
+    this.initMap();
   }
   private addMarker(event) {
     var location: google.maps.LatLng = event.latLng;
@@ -63,7 +73,7 @@ export class MapService {
         if (this._markerType === "finish") {
           google.maps.event.clearListeners(this._map, 'click');
           this._map.setOptions({ draggableCursor: 'auto' });
-          this.isFinished = true;
+          this._finished = true;
           this.isRouteFinishedEvent.emit(true);
         }
         else {
@@ -130,6 +140,8 @@ export class MapService {
       
   }
   
+
+  //very bad practice!!!! dont do this again! (i need some sleep)
   public get markerType(){
     return this._markerType;
   }
@@ -138,6 +150,9 @@ export class MapService {
   }
   public get isStarted(){
     return this._started;
+  }
+  public get isFinished(){
+    return this._finished;
   }
   public get map(){
     return this._map;

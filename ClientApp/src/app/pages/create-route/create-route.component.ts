@@ -36,15 +36,15 @@ export class CreateRouteComponent implements OnInit {
       setTimeout(() => { }, 100);
   }
 
-  ngAfterViewInit(){
-    console.log(this.mapService);
-    this.reset();
-    console.log(this.mapService);
-    console.log("reset");
-  }
+  // ngAfterViewInit(){
+  //   console.log(this.mapService);
+  //   this.reset();
+  //   console.log(this.mapService);
+  //   console.log("reset");
+  // }
 
-  reset(){
-    this.mapService.reset()
-  }
+  // reset(){
+    
+  // }
 
 }
