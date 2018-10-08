@@ -18,6 +18,8 @@ export class MapService {
 
   private _map: google.maps.Map;
   private _markerType = "start";
+
+  private bound = new google.maps.LatLngBounds();
   
   private _finished = false;
   private _started = false;
@@ -44,8 +46,9 @@ export class MapService {
   public reset(){
     this.followRoad = true;
     this._finished = false;
-    this._markerType = "start";
     this._started = false;
+    this._markerType = "start";
+    this.bound = new google.maps.LatLngBounds();
     this.routeStorage.reset();
   }
   public clearMap(){
@@ -58,7 +61,8 @@ export class MapService {
 
     let marker = new Marker(`Point #${this.routeStorage.markers.pointCounter}`, location, this._markerType);
     this.populateMarker(marker);
-
+    this.bound.extend(location);
+    
     //possibly not necessary 
     this.routeStorage.markers.push(marker);
 
@@ -71,7 +75,8 @@ export class MapService {
         this.elementCreated.emit(this.routeStorage.segments.last);
 
         if (this._markerType === "finish") {
-          this.setFinishBounds();
+          //known issue: wont work with undo(??)
+          this._map.fitBounds(this.bound);
           google.maps.event.clearListeners(this._map, 'click');
           this._map.setOptions({ draggableCursor: 'auto' });
           this._finished = true;
@@ -121,14 +126,6 @@ export class MapService {
           .setDistance(response.routes[0].legs[0].distance.value)
           .show();
       }
-      // if (status == google.maps.DirectionsStatus.OK && response) {
-      //   this.viewData.sectionStorage.last
-      //     .setPath(response.routes[0].overview_path)  //array of coords
-      //     .setDistance(response.routes[0].legs[0].distance.value)
-      //     .show();
-      //   console.log(this.viewData.sectionStorage.last);
-      //   console.log(response);
-      // }
     });
 
   }
@@ -140,13 +137,6 @@ export class MapService {
     //   ]).show()
       
   }
-  
-  setFinishBounds(){
-    // var bounds = new
-    console.log(this.routeStorage.bounds);
-    this._map.fitBounds(this.routeStorage.bounds);
-  }
-
   //very bad practice!!!! dont do this again! (i need some sleep)
   public get markerType(){
     return this._markerType;

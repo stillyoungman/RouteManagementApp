@@ -31,10 +31,6 @@ export class RouteStorageService {
     return this._elements;
   }
 
-  get bounds(): google.maps.LatLngBounds {
-    return new google.maps.LatLngBounds(this.segments.segments[0].sections[0].marker.location,
-          this.segments.lastSection.marker.location);
-}
 
 clear(){
   this.segments.clear();
