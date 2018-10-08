@@ -15,7 +15,7 @@ export class MapService {
   latitude = 56.126838;
   longitude = 40.397072;
   followRoad = true;
-  
+
   private _map: google.maps.Map;
   private _markerType = "start";
   
@@ -71,6 +71,7 @@ export class MapService {
         this.elementCreated.emit(this.routeStorage.segments.last);
 
         if (this._markerType === "finish") {
+          this.setFinishBounds();
           google.maps.event.clearListeners(this._map, 'click');
           this._map.setOptions({ draggableCursor: 'auto' });
           this._finished = true;
@@ -140,6 +141,11 @@ export class MapService {
       
   }
   
+  setFinishBounds(){
+    // var bounds = new
+    console.log(this.routeStorage.bounds);
+    this._map.fitBounds(this.routeStorage.bounds);
+  }
 
   //very bad practice!!!! dont do this again! (i need some sleep)
   public get markerType(){

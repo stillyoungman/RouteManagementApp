@@ -31,21 +31,26 @@ export class RouteStorageService {
     return this._elements;
   }
 
-  clear(){
-    this.segments.clear();
-  }
+  get bounds(): google.maps.LatLngBounds {
+    return new google.maps.LatLngBounds(this.segments.segments[0].sections[0].marker.location,
+          this.segments.lastSection.marker.location);
+}
 
-  get route() {
-    let route = new Route(this.segments.segments);
-    route.name = "My Route";
-    return route;
-  }
+clear(){
+  this.segments.clear();
+}
 
-  init(map: google.maps.Map) {
-    this.map = map;
-    this.markers = new MarkerStorage();
-    this.segments = new SegmentStorage(map);
-  }
+get route() {
+  let route = new Route(this.segments.segments);
+  route.name = "My Route";
+  return route;
+}
+
+init(map: google.maps.Map) {
+  this.map = map;
+  this.markers = new MarkerStorage();
+  this.segments = new SegmentStorage(map);
+}
 }
 
 
