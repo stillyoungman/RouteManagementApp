@@ -1,0 +1,12 @@
+<div id='wrap'>
+  <h4>My routes:</h4>
+  <div *ngIf="loading" style="margin: 40px 0">
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </div>
+  <div id="container">
+    
+    <route-card-item *ngFor="let route of routesDto" 
+    [Route]='route'
+    (click)="details(route.routeId)"></route-card-item>
+  </div>
+</div>
