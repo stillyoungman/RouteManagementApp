@@ -40,4 +40,22 @@ export class Route {
         //capitalizeFirstLetter(result);
         return result;
     }
+
+    
+}
+
+export class RouteDto{
+    name:string;
+    distance:number;
+    location:string;
+    description:string;
+    isShared:boolean;
+    segments:Segment[];
+
+    static deserialize(input){
+        var route = Object.assign(new RouteDto(), input);
+        console.log(input.segments);
+        route.segments = Object.assign([],input.segments);
+        return route;
+    }
 }
