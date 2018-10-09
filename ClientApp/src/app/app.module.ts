@@ -23,6 +23,7 @@ import { ElementCardComponent } from './map-components/element-card/element-card
 import { SegmentFillerComponent } from './map-components/fillers/segment-filler/segment-filler.component';
 import { PointFillerComponent } from './map-components/fillers/point-filler/point-filler.component';
 import { RouteFillerComponent } from './map-components/fillers/route-filler/route-filler.component';
+import { RouteCardItemComponent } from './map-components/route-card-item/route-card-item.component';
 
 //another-components
 import { AuthCardComponent } from './another-components/auth-card/auth-card.component';
@@ -32,13 +33,16 @@ import { IndexComponent } from './pages/index/index.component';
 import { CreateRouteComponent } from './pages/create-route/create-route.component';
 import { LoginComponent } from './pages/login/login.component';
 import { CreateAccountComponent } from './pages/create-account/create-account.component';
+import { RouteComponent } from './pages/route/route.component';
+import { MyRoutesComponent } from './pages/my-routes/my-routes.component';
+
 
 import { TestAreaComponent } from './test-area/test-area.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { NamePipe } from './core/helpers/name.pipe';
-import { MyRoutesComponent } from './my-routes/my-routes.component';
 import { LoggedInGuard } from './core/helpers/loggedInGuard';
+import { ToIndex } from './core/helpers/toIndex';
 
 
 
@@ -65,6 +69,8 @@ import { LoggedInGuard } from './core/helpers/loggedInGuard';
     NamePipe,
     AuthCardComponent,
     MyRoutesComponent,
+    RouteCardItemComponent,
+    RouteComponent,
   ],
   imports: [
     BrowserModule,
@@ -78,7 +84,8 @@ import { LoggedInGuard } from './core/helpers/loggedInGuard';
   providers: [
     RouteStorageService,
     MapService,
-    LoggedInGuard
+    LoggedInGuard,
+    ToIndex
   ],
   bootstrap: [AppComponent]
 })
