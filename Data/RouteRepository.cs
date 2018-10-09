@@ -1,5 +1,7 @@
 using System;
+using System.Linq;
 using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 using RouteManagementApp.Data.Access;
 using RouteManagementApp.Entities;
 
@@ -9,7 +11,8 @@ namespace RouteManagementApp.Data
     {
         private MainContext _context;
 
-        public RouteRepository(MainContext context){
+        public RouteRepository(MainContext context)
+        {
             this._context = context;
         }
         public void Add(Route r)
@@ -19,17 +22,22 @@ namespace RouteManagementApp.Data
 
         public bool Any(Func<Route, bool> predicate)
         {
-            throw new NotImplementedException();
+            return _context.Routes.Any(predicate);
         }
-
+        
         public Route GetRoute(int id)
         {
-            throw new System.NotImplementedException();
+            return _context.Routes
+            .Where(route => route.RouteId == id)
+            .Include(route => route.Segments)
+            .ThenInclude(segment => segment.Sections)
+            .ThenInclude( section => section.Marker )
+            .FirstOrDefault();
         }
 
         public ICollection<Route> GetRoutes(int userId, bool isEager = false)
         {
-            throw new NotImplementedException();
+            return _context.Routes.Where(r => r.UserId == userId).ToList();
         }
     }
 }

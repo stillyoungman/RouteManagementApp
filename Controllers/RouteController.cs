@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Authorization;
 using AutoMapper;
 using RouteManagementApp.Services;
 using RouteManagementApp.Data.Access;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace RouteManagementApp.Controllers
 {
@@ -58,9 +60,14 @@ namespace RouteManagementApp.Controllers
             try
             {
                 var uid = HttpContext.GetUserId();
+                
+                IList<RouteDto> routesDto = new List<RouteDto>();
+                foreach( var r in _rep.GetRoutes(uid)){
+                    routesDto.Add(_mapper.Map<RouteDto>(r));
+                }
                 return Ok(new
                 {
-                    routes = _rep.GetRoutes(uid)
+                    routes = routesDto
                 });
             }
             catch
