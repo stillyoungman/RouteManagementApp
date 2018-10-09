@@ -33,7 +33,7 @@ export class WebApiService {
   }
   get routeApiPath(){
     console.log(this.BASE_URL);
-    return this.BASE_URL + "api/Route/";
+    return this.BASE_URL + "api/route/";
   }
 
   getUserRoutes() {
@@ -52,6 +52,18 @@ export class WebApiService {
     return this.http.post(this.routeApiPath + "SaveRoute", route, new RequestOptions({
       headers: this.tokenHeader
     })); 
+  }
+
+  getRoutes(){
+    return this.http.get(this.routeApiPath + "getroutes", new RequestOptions({
+      headers:this.tokenHeader
+    }));
+  }
+
+  getRoute(id){
+    return this.http.get(this.routeApiPath + `getroute?id=${id}`, new RequestOptions({
+      headers:this.tokenHeader
+    }))
   }
 
   register(userDto) {
