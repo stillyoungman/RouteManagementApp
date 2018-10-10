@@ -18,6 +18,8 @@ namespace RouteManagementApp.Entities
         public int UserId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+        public string Bounds { get; set; }
+        public string Created { get; set; }
         public string Location { get; set; }
         public int Distance { get; set; }
         public bool isShared { get; set; }

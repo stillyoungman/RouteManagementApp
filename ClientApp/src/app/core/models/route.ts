@@ -12,9 +12,11 @@ export class Route {
     // distance:number;
     segments: Segment[] = [];
     description:string;
+    bounds: google.maps.LatLngBounds;
     
-    constructor(segments: Segment[]){ 
+    constructor(segments: Segment[], bounds){ 
         this.segments = segments;
+        this.bounds = bounds;
     }
 
     get distance(){
@@ -32,11 +34,15 @@ export class Route {
             name: this.name,
             distance: this.distance,
             location: this.location,
+            bounds: JSON.stringify(this.bounds),
             description: this.description,
             isShared: this.isShared,
             segments: this.segments
-
         }
+        console.log("02m: bounds",JSON.stringify(this.bounds));
+        console.log("ne",JSON.stringify(this.bounds.getNorthEast()));
+        console.log("sw",JSON.stringify(this.bounds.getSouthWest()));
+
         //capitalizeFirstLetter(result);
         return result;
     }
@@ -48,13 +54,15 @@ export class RouteDto{
     name:string;
     distance:number;
     location:string;
+    bounds;
+    date;
     description:string;
     isShared:boolean;
     segments:Segment[];
 
     static deserialize(input){
-        var route = Object.assign(new RouteDto(), input);
-        console.log(input.segments);
+        let route = Object.assign(new RouteDto(), input);
+        route.bounds = JSON.parse(input.bounds);
         route.segments = Object.assign([],input.segments);
         return route;
     }

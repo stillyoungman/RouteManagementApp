@@ -83,6 +83,7 @@ namespace RouteManagementApp.Controllers
             try
             {
                 var route = _mapper.Map<Route>(routeDto);
+                route.Created = DateTime.UtcNow.ToString();
                 route.UserId = HttpContext.GetUserId();
                 _rep.Add(route);
                 _uof.Complete();
