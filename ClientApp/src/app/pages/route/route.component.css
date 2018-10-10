@@ -1,0 +1,31 @@
+#wrap {
+    width:90%;
+    margin: 0 auto;
+    border:2px solid slateblue;
+    height: 700px;
+    padding:10px 15px;
+}
+#map {
+    height: 600px;
+}
+#progress {
+    margin:300px 200px;
+}
+.chip{
+    font-size:1.5em;
+    cursor: pointer;
+}
+.active {
+    background-color:silver;
+}
+.btn-wrap {
+    width: 200px;
+    margin: 20px auto;
+}
+#details{
+    margin: 5px 5px 5px 5px;
+    height: 600px;
+    min-width: 300px;
+    border-radius:3px;
+    border: 1px solid #CCD1D1;
+}

@@ -1,1 +1,15 @@
-<h1>{{routeId}}</h1>
+<div id="wrap">
+<div *ngIf="!loaded" id="progress">
+<mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</div>
+<div [hidden]="!loaded || area!=='map'" id="map" #map></div>
+<div [hidden]="area!=='details'" id="details"></div>
+<div class='btn-wrap'>
+    <div class="chip"
+        [class.active]="area=='map'"
+        (click)="setArea('map')">Map</div>
+    <div class="chip"
+        [class.active]="area=='details'"
+        (click)="setArea('details')">Details</div>
+</div>
+</div>

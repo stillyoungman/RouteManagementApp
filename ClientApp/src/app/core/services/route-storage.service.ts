@@ -14,6 +14,7 @@ export class RouteStorageService {
   map: google.maps.Map;
   markers: MarkerStorage;
   segments: SegmentStorage;
+  bounds = new google.maps.LatLngBounds();
 
   _elements;
   elementPicked = new EventEmitter();
@@ -25,6 +26,7 @@ export class RouteStorageService {
     this._elements = [];
     this.markers = new MarkerStorage();
     this.segments = new SegmentStorage(this.map);
+    this.bounds = new google.maps.LatLngBounds();
   }
 
   get elements() {
@@ -37,7 +39,7 @@ clear(){
 }
 
 get route() {
-  let route = new Route(this.segments.segments);
+  let route = new Route(this.segments.segments, this.bounds);
   route.name = "My Route";
   return route;
 }

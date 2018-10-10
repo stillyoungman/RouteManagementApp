@@ -19,8 +19,6 @@ export class MapService {
   private _map: google.maps.Map;
   private _markerType = "start";
 
-  private bound = new google.maps.LatLngBounds();
-  
   private _finished = false;
   private _started = false;
 
@@ -31,13 +29,10 @@ export class MapService {
     this.directionsService = new google.maps.DirectionsService();
    }
   
-  public initMap(map?: google.maps.Map) {
-   
-    if(!this._map) { 
-      this._map = map;
-      this.routeStorage.init(map);
-     }
-    else { this._map.setOptions(this.mapOptions) }
+  public initMap(map?: google.maps.Map) {  
+    this._map = map;
+    this.routeStorage.init(map);
+    this._map.setOptions(this.mapOptions) 
     
     this._map.addListener('click', (event) => {
       this.addMarker(event);
@@ -48,20 +43,19 @@ export class MapService {
     this._finished = false;
     this._started = false;
     this._markerType = "start";
-    this.bound = new google.maps.LatLngBounds();
     this.routeStorage.reset();
   }
   public clearMap(){
     this.routeStorage.clear();
     this.reset();
-    this.initMap();
+    this.initMap(this._map);
   }
   private addMarker(event) {
     var location: google.maps.LatLng = event.latLng;
 
     let marker = new Marker(`Point #${this.routeStorage.markers.pointCounter}`, location, this._markerType);
     this.populateMarker(marker);
-    this.bound.extend(location);
+    this.routeStorage.bounds.extend(location);
     
     //possibly not necessary 
     this.routeStorage.markers.push(marker);
@@ -76,7 +70,8 @@ export class MapService {
 
         if (this._markerType === "finish") {
           //known issue: wont work with undo(??)
-          this._map.fitBounds(this.bound);
+          this._map.fitBounds(this.routeStorage.bounds);
+          console.log("bounds from rs",this.routeStorage.bounds)
           google.maps.event.clearListeners(this._map, 'click');
           this._map.setOptions({ draggableCursor: 'auto' });
           this._finished = true;
@@ -136,6 +131,38 @@ export class MapService {
     //     this.viewData.markerStorage.last.location
     //   ]).show()
       
+  }
+  
+  public populateFromRoute(route){
+    this.clearMap();
+    let bounds = JSON.parse(route.bounds);
+    bounds = new google.maps.LatLngBounds(
+      new google.maps.LatLng(bounds.south,bounds.west),
+      new google.maps.LatLng(bounds.north,bounds.east))
+
+      this._map.setCenter(bounds.getCenter());
+    // let b = 
+    // );
+
+    setTimeout(()=>{ 
+      this._map.fitBounds(bounds);
+    }, 500)
+
+   
+
+    route.segments.forEach( segment => {
+      segment.sections.forEach( section => {
+        this._markerType = section.marker.type;
+        let m = Marker.deserialize(section.marker)
+        this.populateMarker(m);
+
+        let sec = Section.deserialize(section,m);
+        sec.polylineOptions = this.polylineOptions;
+        sec.map = this._map;
+
+        sec.show();
+      })
+    })
   }
   //very bad practice!!!! dont do this again! (i need some sleep)
   public get markerType(){
