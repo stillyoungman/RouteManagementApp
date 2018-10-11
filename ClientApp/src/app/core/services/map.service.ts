@@ -5,6 +5,7 @@ import { RouteStorageService } from './route-storage.service';
 import { Marker } from '../models/marker';
 import { Section } from '../models/section';
 import { Http } from '@angular/http'
+import { Route } from '../models/route';
 
 @Injectable({
   providedIn: 'root'
@@ -133,34 +134,20 @@ export class MapService {
       
   }
   
-  public populateFromRoute(route){
+  public populateFromRoute(route:Route){
     this.clearMap();
-    let bounds = JSON.parse(route.bounds);
-    bounds = new google.maps.LatLngBounds(
-      new google.maps.LatLng(bounds.south,bounds.west),
-      new google.maps.LatLng(bounds.north,bounds.east))
-
-      this._map.setCenter(bounds.getCenter());
-    // let b = 
-    // );
-
+      this._map.setCenter(route.bounds.getCenter());
+      
     setTimeout(()=>{ 
-      this._map.fitBounds(bounds);
+      this._map.fitBounds(route.bounds);
     }, 500)
-
-   
-
     route.segments.forEach( segment => {
       segment.sections.forEach( section => {
-        this._markerType = section.marker.type;
-        let m = Marker.deserialize(section.marker)
-        this.populateMarker(m);
-
-        let sec = Section.deserialize(section,m);
-        sec.polylineOptions = this.polylineOptions;
-        sec.map = this._map;
-
-        sec.show();
+        section.polylineOptions = this.polylineOptions;
+        section.map = this._map;
+        this._markerType = section.markerType;
+        this.populateMarker(section.marker);
+        section.show();
       })
     })
   }
