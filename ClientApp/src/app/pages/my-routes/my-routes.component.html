@@ -4,7 +4,7 @@
       <mat-progress-bar mode="indeterminate"></mat-progress-bar>
   </div>
   <div id="container">
-    
+    <p *ngIf="empty && !loading">You haven't any routes yet(</p>
     <route-card-item *ngFor="let route of routesDto" 
     [Route]='route'
     (click)="details(route.routeId)"></route-card-item>

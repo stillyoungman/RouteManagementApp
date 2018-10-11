@@ -3,7 +3,11 @@
 <mat-progress-bar mode="indeterminate"></mat-progress-bar>
 </div>
 <div [hidden]="!loaded || area!=='map'" id="map" #map></div>
-<div [hidden]="area!=='details'" id="details"></div>
+<div [hidden]="area!=='details'" id="details">
+    <div id="card">
+        <route-filler *ngIf="userRoute" [Route]="userRoute"></route-filler>
+    </div>
+</div>
 <div class='btn-wrap'>
     <div class="chip"
         [class.active]="area=='map'"

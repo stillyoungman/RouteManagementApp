@@ -5,6 +5,8 @@ import { ApplicationService } from 'src/app/core/services/application.service';
 import { ActivatedRoute } from '@angular/router';
 import { WebApiService } from 'src/app/core/services/web-api.service';
 import { MapService } from 'src/app/core/services/map.service';
+import { Route } from 'src/app/core/models/route';
+import { NotificationService } from 'src/app/core/services/notification.service';
 
 @Component({
   selector: 'app-route',
@@ -17,10 +19,13 @@ export class RouteComponent implements OnInit {
 
   loaded;
   routeId;
-  userRoute;
+  userRoute:Route;
   area = "map";
 
-  constructor(private route: ActivatedRoute, private api: WebApiService, private mapService : MapService) { }
+  constructor(private route: ActivatedRoute, 
+      private api: WebApiService, 
+      private mapService : MapService,
+      private notiService: NotificationService) { }
 
   ngOnInit() {
     this.loaded = false;
@@ -29,9 +34,11 @@ export class RouteComponent implements OnInit {
     this.route.paramMap.subscribe( params => {
       this.routeId = params.get("id");
       this.api.getRoute(this.routeId).subscribe( res => {
-        this.userRoute = res.json().route;
+        console.log(Route.deserialize(res.json().route))
+        this.userRoute = Route.deserialize(res.json().route)
         this.loaded = true;
         this.mapService.populateFromRoute(this.userRoute);
+        this.getRouteDetails();
       }, err => {
 
       }, () => {
@@ -42,6 +49,16 @@ export class RouteComponent implements OnInit {
 
   setArea(value){
     this.area = value;
+  }
+
+  getRouteDetails(){
+    let points = [];
+    this.userRoute.segments.forEach(segment => {
+      segment.sections.forEach(section => {
+        points.push(section.markerType);
+      });
+    })
+    console.log("Points", points);
   }
 
 }
