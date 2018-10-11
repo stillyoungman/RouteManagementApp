@@ -18,16 +18,8 @@ export class CreateRouteComponent implements OnInit {
   }
 
   ngOnInit() {
-    //implement this!
-    //this.reset();
-
     this.mapService.initMap(new google.maps.Map(this.mapCanvas.nativeElement, this.mapService.mapOptions));
     
-    // this.mapService.isRouteStarted.subscribe(
-    //   value => {
-    //     console.log(value);
-    //   }
-    // )
   }
 
   //for elements refreshing
@@ -35,16 +27,4 @@ export class CreateRouteComponent implements OnInit {
   async someEvent() {
       setTimeout(() => { }, 100);
   }
-
-  // ngAfterViewInit(){
-  //   console.log(this.mapService);
-  //   this.reset();
-  //   console.log(this.mapService);
-  //   console.log("reset");
-  // }
-
-  // reset(){
-    
-  // }
-
 }

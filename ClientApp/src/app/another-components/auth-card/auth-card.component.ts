@@ -30,6 +30,7 @@ export class AuthCardComponent implements OnInit {
   }
 
   logout() {
+    this.app.redirectTo("/login");
     this.auth.logout();
   }
 

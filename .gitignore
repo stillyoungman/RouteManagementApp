@@ -181,7 +181,8 @@ ClientBin/
 *.publishsettings
 orleans.codegen.cs
 
-#ClientApp/node_modules
+ClientApp/node_modules
+ClientApp/dist
 
 # RIA/Silverlight projects
 Generated_Code/

@@ -8,12 +8,17 @@
     border-radius:2px;
     cursor: pointer;
 }
+.item:hover {
+    -webkit-box-shadow: 0 10px 6px -6px rgba(119, 119, 119, 0.548);
+    -moz-box-shadow: 0 10px 6px -6px rgba(119, 119, 119, 0.404);
+    box-shadow: 0 10px 6px -6px rgba(119, 119, 119, 0.356);  
+}
 .item>p{
     font-weight: 100;
     color:#34495E;
 }
 .item:hover{
-    background-color:rgba(169, 169, 169, 0.39);
+    background-color:rgba(169, 169, 169, 0.329);
 }
 .item>h5 {
     margin:0;

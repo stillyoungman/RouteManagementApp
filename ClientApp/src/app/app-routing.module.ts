@@ -15,14 +15,39 @@ import { ToIndex } from './core/helpers/toIndex';
 
 
 const routes: Routes = [
-  { path: '', component: IndexComponent },
-  { path: 'create-route', component: CreateRouteComponent },
-  { path: 'create-account', component: CreateAccountComponent }, 
-  { path: 'login', component: LoginComponent },
-  { path: 'my-routes', component: MyRoutesComponent, canActivate: [LoggedInGuard] }, 
-  { path: 'route/:id', component: RouteComponent },
-  { path: 'test', component: TestAreaComponent },
-  { path: '**', component: IndexComponent, canActivate: [ToIndex] }//*
+  { 
+    path: '', 
+    component: IndexComponent 
+  },
+  { 
+    path: 'create-route', 
+    component: CreateRouteComponent 
+  },
+  { 
+    path: 'create-account', 
+    component: CreateAccountComponent 
+  }, 
+  { 
+    path: 'login', 
+    component: LoginComponent 
+  },
+  { 
+    path: 'my-routes', 
+    component: MyRoutesComponent, 
+    canActivate: [LoggedInGuard] 
+  }, 
+  { 
+    path: 'route/:id', 
+    component: RouteComponent 
+  },
+  { 
+    path: 'test', 
+    component: TestAreaComponent 
+  },
+  { 
+    path: '**', 
+    component: IndexComponent, 
+    canActivate: [ToIndex] }
 ]
 
 @NgModule({

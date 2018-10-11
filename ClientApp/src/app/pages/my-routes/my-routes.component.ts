@@ -17,29 +17,29 @@ export class MyRoutesComponent implements OnInit {
   constructor(private api: WebApiService, private app: ApplicationService) { }
 
   ngOnInit() {
-    this.getRoutes(this.routes);
+    this.getRoutes();
   }
   
-  getRoutes(routes){
+  getRoutes(){
     this.api.getRoutes().subscribe( res => {
       // this.routes = res.json().routes;
       this.loading = false;
       res.json().routes.forEach( r => {
         this.routesDto.push(RouteDto.deserialize(r));
       })
-      console.log("routesDto", this.routesDto);
-      console.log("res", res);
     }, err => {
 
     }, () => {
       console.log("Complete")
-      // console.log("routes", this.routes);
     })
   }
 
   details(value){
     this.app.router.navigate(['/route', value]);
-    console.log(value);
+  }
+
+  get empty(){
+    return this.routesDto.length === 0;
   }
 
 

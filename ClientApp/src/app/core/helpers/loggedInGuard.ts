@@ -9,8 +9,6 @@ export class LoggedInGuard implements CanActivate {
     constructor(private auth: AuthService, private app: ApplicationService) { }
 
     canActivate() {
-        console.log('isAuthenticated', this.auth.isAuthenticated);
-
         if (this.auth.isAuthenticated) {
             return true;
         }

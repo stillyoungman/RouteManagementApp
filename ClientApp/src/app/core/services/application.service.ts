@@ -26,5 +26,4 @@ export class ApplicationService {
   get url(){
     return this.router.url;
   }
-  
 }

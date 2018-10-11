@@ -29,7 +29,6 @@ export class RouteElementsComponent implements OnInit {
   }
 
   isStarted(): boolean {
-    console.log("isStarted");
     return this.mapService.isStarted;
   }
   get isFinished() {
@@ -42,11 +41,8 @@ export class RouteElementsComponent implements OnInit {
 
   clearMap() {
     this.mapService.clearMap();
-    // this.mapService.reset();
     this.elements = this.routeStorage.elements;
     this.routeStorage.elementPicked.emit(undefined);
-    // this.mapService.initMap();
-    console.log(this.routeStorage);
   }
 
   picked(element) {

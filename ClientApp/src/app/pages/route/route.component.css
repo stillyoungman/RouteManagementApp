@@ -29,3 +29,7 @@
     border-radius:3px;
     border: 1px solid #CCD1D1;
 }
+#card {
+    padding:0 0 0 25px; 
+    float:right;
+}

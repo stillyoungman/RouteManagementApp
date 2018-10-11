@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Headers, RequestOptions, Http } from '@angular/http';
 import { AuthService } from '../core/services/auth.service';
 import { WebApiService } from '../core/services/web-api.service';
+import { ApplicationService } from '../core/services/application.service';
 
 
 @Component({
@@ -11,7 +12,10 @@ import { WebApiService } from '../core/services/web-api.service';
 })
 export class TestAreaComponent implements OnInit {
 
-  constructor(private http: Http, private auth: AuthService, private api: WebApiService) { }
+  constructor(private http: Http, 
+      private auth: AuthService, 
+      private api: WebApiService,
+      private app: ApplicationService) { }
 
   ngOnInit() {
   }
@@ -35,6 +39,10 @@ export class TestAreaComponent implements OnInit {
       name: "Kyle Lebowski",
       email: "test@email.com",
     });
+  }
+
+  setQuery(){
+    this.app.router.navigate(['/test'],{ queryParams: { key:"value", 'some':234}});
   }
 
   send(){
