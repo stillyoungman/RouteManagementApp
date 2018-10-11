@@ -2,8 +2,11 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ApplicationService } from './application.service';
-import { Observable } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { Route } from '../models/route';
+import { catchError } from 'rxjs/operators';
+import { NotificationService } from './notification.service';
+// import 'rxjs/add/operator/catch';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +15,9 @@ export class WebApiService {
 
   BASE_URL: string;
 
-  constructor(private http: Http, private app: ApplicationService) { 
+  constructor(private http: Http, 
+      private app: ApplicationService,
+      private notiService: NotificationService) { 
     this.BASE_URL = document.getElementsByTagName('base')[0].href;
   }
 
@@ -51,7 +56,12 @@ export class WebApiService {
   saveRoute(route: Route){
     return this.http.post(this.routeApiPath + "SaveRoute", route, new RequestOptions({
       headers: this.tokenHeader
-    })); 
+    })).pipe(
+      catchError( err => {
+        this.notiService.notify("Can't save route");
+        return throwError(err);
+      })
+    );
   }
 
   getRoutes(){
