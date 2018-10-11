@@ -13,6 +13,7 @@ export class Route {
     segments: Segment[] = [];
     description:string;
     bounds: google.maps.LatLngBounds;
+    _distance: number;
     
     constructor(segments: Segment[], bounds){ 
         this.segments = segments;
@@ -20,9 +21,14 @@ export class Route {
     }
 
     get distance(){
+        if (this._distance) return this._distance;
         var result = 0;
         this.segments.forEach((value) => result += value.distance);
         return result;
+    }
+
+    set distance(value){
+        this._distance = value;
     }
 
     toJSON(){
@@ -39,14 +45,22 @@ export class Route {
             isShared: this.isShared,
             segments: this.segments
         }
-        console.log("02m: bounds",JSON.stringify(this.bounds));
-        console.log("ne",JSON.stringify(this.bounds.getNorthEast()));
-        console.log("sw",JSON.stringify(this.bounds.getSouthWest()));
-
         //capitalizeFirstLetter(result);
         return result;
     }
 
+    static deserialize(input){
+        let route :Route = Object.assign(new Route(null,null),input);
+        let bounds = JSON.parse(input.bounds);
+        route.bounds = new google.maps.LatLngBounds(
+              new google.maps.LatLng(bounds.south,bounds.west),
+              new google.maps.LatLng(bounds.north,bounds.east));
+        route.segments = [];
+        input.segments.forEach(segment => {
+            route.segments.push(Segment.deserialize(segment));
+        })
+        return route;
+    }
     
 }
 
@@ -66,4 +80,6 @@ export class RouteDto{
         route.segments = Object.assign([],input.segments);
         return route;
     }
+
+    
 }

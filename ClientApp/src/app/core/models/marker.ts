@@ -24,8 +24,6 @@ export class Marker {
         this.gInstance =  new google.maps.Marker(markerOptions);
     }
 
-    
-
     toJSON(){
         return this.object2Model();
     }
@@ -44,20 +42,13 @@ export class Marker {
         if(this.isDateRequired && this.date){
             result.properties["date"];
         }
-
-        // if(this.arrival) {
-        //     result.properties["arrival"] = this.arrival;
-        // }
-        // if(this.departure){
-        //     result.properties["departure"] = this.departure;
-        // }
-        // if(this.rest){
-        //     result.properties["rest"] = this.arrival;
-        // }
-
         createProperties(result);
-        //capitalizeFirstLetter(result);
         return result;
     }
-
+    static deserialize(m){
+        let result = Object.assign(new Marker(null,null,null),m);
+        result.location = JSON.parse(m.location);
+        // result.location = m.location;
+        return result;
+    }
 }
