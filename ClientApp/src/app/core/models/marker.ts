@@ -32,23 +32,28 @@ export class Marker {
         var result = {
             name: this.name,
             type: this.type,
+            comment: this.comment,
             location: JSON.stringify(this.location),
             properties: {}
         }
 
         if(this.isRestRequired && this.rest){
-            result.properties["arrival"];
+            result.properties["rest"] = this.rest;
         }
         if(this.isDateRequired && this.date){
-            result.properties["date"];
+            result.properties["date"] = this.date;
         }
         createProperties(result);
         return result;
     }
     static deserialize(m){
-        let result = Object.assign(new Marker(null,null,null),m);
+        let result:Marker = Object.assign(new Marker(null,null,null),m);
         result.location = JSON.parse(m.location);
-        // result.location = m.location;
+
+        if (m.type !== 'inter' && m.properties){
+        result = Object.assign(result, JSON.parse(m.properties));
+        }
+        console.log(result);
         return result;
     }
 }

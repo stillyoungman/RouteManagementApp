@@ -103,10 +103,10 @@ export class Segment implements IElement {
         };
 
         if(this.isTimeRequired && this.travelTime){
-            result.properties["time"];
+            result.properties["time"] = this.travelTime;
         }
         if(this.isDateRequired && this.date){
-            result.properties["date"];
+            result.properties["date"] = this.date;
         }
 
         createProperties(result);
