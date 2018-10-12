@@ -9,6 +9,7 @@ namespace RouteManagementApp.Entities
         public string Type {get; set; }
         public string Location {get; set;}
         public string Properties { get; set; }
+        public string Comment { get; set; }
         
     }
 }
