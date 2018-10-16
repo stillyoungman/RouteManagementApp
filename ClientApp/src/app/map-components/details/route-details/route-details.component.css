@@ -10,3 +10,11 @@
         z-index: 2;
         padding: 50% 0 0 0;
 }
+.chip {
+    cursor: pointer;
+}
+.not-active {
+    background-color: #d4d4d4;
+    color: rgba(0, 0, 0, 0.3);
+    cursor: default;
+}

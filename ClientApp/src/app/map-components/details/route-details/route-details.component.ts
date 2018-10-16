@@ -163,6 +163,13 @@ export class PageStorage{
     }
   }
 
+  get isPrevious(){
+    return !!this.pages[this.currentPageIndex-1];
+  }
+  get isNext(){
+    return !!this.pages[this.currentPageIndex+1];
+  }
+
 
   nextPage(){
     this.pages.push(new Page());

@@ -1,6 +1,15 @@
+
 <div id="container"
   #container
   *ngIf="isActive">
+  <div *ngIf="pages.length > 1 && _state.isReady">
+    <div class="chip"
+    (click)="pages.p()"
+    [class.not-active]="!pages.isPrevious">prev</div>
+    <div class="chip"
+    (click)="pages.n()"
+    [class.not-active]="!pages.isNext">next</div>
+  </div>
   <div id="cover" [class.invis]="_state.pagination">
     <mat-progress-bar mode="indeterminate"></mat-progress-bar>
   </div>
@@ -18,7 +27,5 @@
           [Element]="item"></segment-details>
         </div>
       </div>
-</div>
-<button (click)="pages.p()">previous</button> 
+    </div>
 
-<button (click)="pages.n()">next</button>

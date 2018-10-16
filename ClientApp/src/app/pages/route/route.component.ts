@@ -186,7 +186,6 @@ export class RouteComponent implements OnInit {
     console.log(this.disposable);
     this.disposable.forEach( sub => {
       sub.unsubscribe();
-      console.log("usbub ",sub);
     })
   }
 }
