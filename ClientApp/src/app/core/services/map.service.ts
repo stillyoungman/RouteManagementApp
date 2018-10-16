@@ -16,6 +16,7 @@ export class MapService {
   latitude = 56.126838;
   longitude = 40.397072;
   followRoad = true;
+  bounds;
 
   private _map: google.maps.Map;
   private _markerType = "start";
@@ -38,6 +39,11 @@ export class MapService {
     this._map.addListener('click', (event) => {
       this.addMarker(event);
     });
+  }
+  public initMapForShow(map: google.maps.Map){
+    this._map = map;
+    this.routeStorage.init(map);
+    // this._map.setOptions(this.optionsForShow);
   }
   public reset(){
     this.followRoad = true;
@@ -137,7 +143,9 @@ export class MapService {
   public populateFromRoute(route:Route){
     this.clearMap();
       this._map.setCenter(route.bounds.getCenter());
-      
+    
+    this.bounds = route.bounds;
+
     setTimeout(()=>{ 
       this._map.fitBounds(route.bounds);
     }, 500)
@@ -177,6 +185,22 @@ export class MapService {
       mapTypeControl: false,
       streetViewControl: false,
       rotateControl: false,
+    }
+  }
+  public get optionsForShow(){
+    return {
+      mapTypeId: google.maps.MapTypeId.TERRAIN,
+      scrollwheel: true,
+      mapTypeControl: false,
+      streetViewControl: false,
+      rotateControl: false,
+    }
+  }
+  public fitBounds(){
+    if (this.bounds){
+      setTimeout(()=>{
+        this._map.fitBounds(this.bounds);
+      },200);
     }
   }
   public get polylineOptions(): google.maps.PolylineOptions {

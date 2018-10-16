@@ -45,7 +45,10 @@ export class RouteComponent implements OnInit {
       this.details.isActive = true;
       this._area = value;
     }
-    else this._area = 'map'; 
+    else {
+      this._area = 'map'; 
+      this.mapService.fitBounds();
+    }
   }
 
   constructor(private route: ActivatedRoute,
@@ -75,7 +78,7 @@ export class RouteComponent implements OnInit {
     }
 
   ngOnInit() {
-    this.mapService.initMap(new google.maps.Map(this.mapCanvas.nativeElement, this.mapService.mapOptions))
+    this.mapService.initMap(new google.maps.Map(this.mapCanvas.nativeElement, this.mapService.optionsForShow))
     let sub1,sub2,sub3;
     sub1 = this.route.paramMap.subscribe(params => {
       this.routeId = params.get("id");
@@ -101,7 +104,6 @@ export class RouteComponent implements OnInit {
 
 
   setArea(value) {
-    // this.area = value;
     const queryParams: Params = Object.assign({}, this.route.snapshot.queryParams);
     queryParams['area'] = value;
     this.router.navigate([], {
