@@ -49,7 +49,7 @@ export class Route {
         return result;
     }
 
-    static deserialize(input){
+    static deserialize(input):Route{
         let route :Route = Object.assign(new Route(null,null),input);
         let bounds = JSON.parse(input.bounds);
         route.bounds = new google.maps.LatLngBounds(

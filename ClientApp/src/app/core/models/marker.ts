@@ -53,7 +53,6 @@ export class Marker {
         if (m.type !== 'inter' && m.properties){
         result = Object.assign(result, JSON.parse(m.properties));
         }
-        console.log(result);
         return result;
     }
 }
