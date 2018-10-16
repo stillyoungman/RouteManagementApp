@@ -16,26 +16,52 @@ export class MyRoutesComponent implements OnInit {
 
   constructor(private api: WebApiService, private app: ApplicationService) { }
 
+  disposable = [];
+
   ngOnInit() {
     this.getRoutes();
+    this.disposable.push(this.app.search$.subscribe(str => {
+      if(!str){
+        this.resetFilter();
+      } else {
+        this.filter(str);
+      }
+      
+    }));
   }
   
   getRoutes(){
     this.api.getRoutes().subscribe( res => {
-      // this.routes = res.json().routes;
-      this.loading = false;
       res.json().routes.forEach( r => {
+        r.isSuitable = true;
         this.routesDto.push(RouteDto.deserialize(r));
       })
+      
     }, err => {
 
     }, () => {
-      console.log("Complete")
+      this.loading = false;
     })
   }
 
   details(value){
     this.app.router.navigate(['/route', value]);
+  }
+
+  filter(str){
+    this.routesDto.forEach(route => {
+      if ((route.name && route.name.includes(str)) || (route.description && route.description.includes(str)) || (route.location && route.location.includes(str))){
+        route.isSuitable = true;
+      } else {
+        route.isSuitable = false;
+      }
+    })
+  }
+
+  resetFilter(){
+    this.routesDto.forEach(route => {
+      route.isSuitable = true;
+    })
   }
 
   get empty(){

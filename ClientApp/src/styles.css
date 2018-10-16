@@ -21,6 +21,9 @@ input:not([type]):focus:not([readonly]){
     -webkit-box-shadow: none;
     box-shadow: none;
 }
+input:not([type]), input[type=text]:not(.browser-default), input[type=password]:not(.browser-default), input[type=email]:not(.browser-default), input[type=url]:not(.browser-default), input[type=time]:not(.browser-default), input[type=date]:not(.browser-default), input[type=datetime]:not(.browser-default), input[type=datetime-local]:not(.browser-default), input[type=tel]:not(.browser-default), input[type=number]:not(.browser-default), input[type=search]:not(.browser-default), textarea.materialize-textarea {
+    border: none;
+}
 .back-img{
     background-image:url("assets/img/main.jpeg");
 }
@@ -69,6 +72,7 @@ input:not([type]):focus:not([readonly]){
     box-shadow: 0 3px 0.5rem #d9d9d9;
     border-radius:3px;
     word-wrap: break-word;
+    background-color: rgba(255, 255, 255, 0.377);
 }
 .info-wrap:hover{
     box-shadow: 1px 4px 0.5rem #d9d9d9;

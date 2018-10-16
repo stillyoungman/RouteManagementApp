@@ -1,11 +1,26 @@
 <div id="layout-topbar">
-  <a (click)="logoLink()">
+
+  <a (click)="logoLink()" id="logo-wrap">
       <span class="logo">
           <img  src="../../assets/app-logo.png" alt="home">
         </span>
-        <!-- <div id="name">Easy way</div> -->
   </a>
 
-  <auth-card></auth-card>
-  
+  <div class="search-wrapper" *ngIf='isSearchRequired'>
+     
+    <input #search
+        id="search" 
+        type="text" 
+        placeholder="Search place..."
+        (keyup)="searchKeyup(search.value)">
+    
+    <div id="icon">
+        <i class="material-icons">
+            search
+            </i>
+          </div>
+  </div>
+
+      <auth-card></auth-card>
+
 </div>

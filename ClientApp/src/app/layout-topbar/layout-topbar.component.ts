@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { ApplicationService } from '../core/services/application.service';
 import { AuthService } from '../core/services/auth.service';
 // import {MatButtonModule} from '@angular/material/button';
@@ -11,15 +11,19 @@ import { AuthService } from '../core/services/auth.service';
 })
 export class LayoutTopbarComponent implements OnInit {
 
-  constructor(private app: ApplicationService, private authService: AuthService) { }
+  url;
+  disposable = [];
+
+  constructor(private app: ApplicationService, 
+      private authService: AuthService,
+      private router: Router) { }
 
   ngOnInit() {
-    
-  }
-
-  get isVisible() {
-    return !(this.app.url === "/login" ||
-      this.app.url === "/create-account");
+    this.disposable.push(this.router.events.subscribe((event)=>{
+      if (event instanceof NavigationEnd){
+        this.url = event.url;
+      }
+    }))
   }
 
   logoLink(){
@@ -28,6 +32,19 @@ export class LayoutTopbarComponent implements OnInit {
     else this.app.router.navigate(["/"]);
   }
 
+  private get isSearchRequired(){
+    return this.url === "/create-route" || this.url === "/my-routes";
+  }
+
+  searchKeyup(value){
+    this.app.search$.next(value);
+  }
+
+  ngOnDestroy(){
+    this.disposable.forEach( sub => {
+      sub.unsubscribe();
+    });
+  }
 
 
 }

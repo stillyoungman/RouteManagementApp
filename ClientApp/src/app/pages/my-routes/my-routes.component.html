@@ -5,8 +5,15 @@
   </div>
   <div id="container">
     <p *ngIf="empty && !loading">You haven't any routes yet(</p>
-    <route-card-item *ngFor="let route of routesDto" 
+    <div *ngFor="let route of routesDto"
+      [class.invis]="!route.isSuitable" > 
+    <route-card-item
     [Route]='route'
-    (click)="details(route.routeId)"></route-card-item>
+    (click)="details(route.routeId)"
+    >
+    
+    </route-card-item>
+    </div>
+    
   </div>
 </div>
