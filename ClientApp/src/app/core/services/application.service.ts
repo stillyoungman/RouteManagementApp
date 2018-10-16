@@ -1,12 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApplicationService {
 
-  constructor(public router: Router) { }
+  element$:Subject<{index:number;height:number}>;
+
+  constructor(public router: Router) { 
+    this.element$ = new Subject();
+  }
 
   saveBackLink(){
     if (!(this.router.url === "/login" || this.router.url === "/create-account")){

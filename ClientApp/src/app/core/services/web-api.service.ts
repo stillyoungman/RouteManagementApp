@@ -37,7 +37,6 @@ export class WebApiService {
     return this.BASE_URL + "api/auth/";
   }
   get routeApiPath(){
-    console.log(this.BASE_URL);
     return this.BASE_URL + "api/route/";
   }
 

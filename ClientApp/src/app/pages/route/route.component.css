@@ -1,7 +1,7 @@
 #wrap {
     width:90%;
     margin: 0 auto;
-    border:2px solid slateblue;
+    /* border:2px solid slateblue; */
     height: 700px;
     padding:10px 15px;
 }
@@ -27,7 +27,10 @@
     height: 600px;
     min-width: 300px;
     border-radius:3px;
-    border: 1px solid #CCD1D1;
+}
+.fl {
+    display:flex;
+    justify-content: space-evenly;
 }
 #card {
     padding:0 0 0 25px; 
