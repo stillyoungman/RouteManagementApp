@@ -1,0 +1,24 @@
+<div id="container"
+  #container
+  *ngIf="isActive">
+  <div id="cover" [class.invis]="_state.pagination">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </div>
+    <div #el *ngFor="let item of pgs"
+      catchHeight
+      [attr.data-index]='item.index'
+      >
+        <div id="element"  [ngSwitch]="item.type">
+          <point-details
+          *ngSwitchCase="'start'"
+          [Element]="item.element.marker"></point-details>
+          <span *ngSwitchCase="'end'"></span>
+          <segment-details
+          *ngSwitchDefault
+          [Element]="item"></segment-details>
+        </div>
+      </div>
+</div>
+<button (click)="pages.p()">previous</button> 
+
+<button (click)="pages.n()">next</button>
