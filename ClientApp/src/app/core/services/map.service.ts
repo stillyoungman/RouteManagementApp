@@ -141,7 +141,7 @@ export class MapService {
   }
   
   public populateFromRoute(route:Route){
-    this.clearMap();
+    // this.clearMap();
       this._map.setCenter(route.bounds.getCenter());
     
     this.bounds = route.bounds;

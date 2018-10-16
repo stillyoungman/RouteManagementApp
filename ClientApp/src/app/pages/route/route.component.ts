@@ -78,7 +78,7 @@ export class RouteComponent implements OnInit {
     }
 
   ngOnInit() {
-    this.mapService.initMap(new google.maps.Map(this.mapCanvas.nativeElement, this.mapService.optionsForShow))
+    this.mapService.initMapForShow(new google.maps.Map(this.mapCanvas.nativeElement, this.mapService.optionsForShow))
     let sub1,sub2,sub3;
     sub1 = this.route.paramMap.subscribe(params => {
       this.routeId = params.get("id");
