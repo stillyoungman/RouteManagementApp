@@ -10,13 +10,14 @@ import { Route } from '../../core/models/route';
 })
 export class ElementCardComponent implements OnInit {
 
+  disposable = [];
   private _element;
   constructor(private routeStorage: RouteStorageService) { }
 
   ngOnInit() {
-    this.routeStorage.elementPicked.subscribe(element => {
+    this.disposable.push(this.routeStorage.elementPicked.subscribe(element => {
       this._element = element;
-    })
+    }))
   }
 
   get type(): string {
@@ -28,4 +29,10 @@ export class ElementCardComponent implements OnInit {
   }
 
   close = () => this._element = null;
+  
+  ngOnDestroy(){
+    this.disposable.forEach(sub => {
+      sub.unsubscribe();
+    })
+  }
 }
