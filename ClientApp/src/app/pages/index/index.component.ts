@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApplicationService } from 'src/app/core/services/application.service';
 
 @Component({
   selector: 'index',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IndexComponent implements OnInit {
 
-  constructor() { }
+  constructor(private app: ApplicationService) { }
 
   ngOnInit() {
     console.log(window.innerHeight);
@@ -17,4 +18,7 @@ export class IndexComponent implements OnInit {
     document.body.className = "";
   }
 
+  go(){
+    this.app.redirectTo("create-route");
+  }
 }

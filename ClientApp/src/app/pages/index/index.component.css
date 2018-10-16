@@ -1,1 +1,19 @@
+.main {
+    display: flex; 
+    justify-content: center;
+    height: -moz-available;
+    height: -webkit-fill-available;
+    height: stretch;
+}
 
+.hello {
+    background-color: rgba(31, 31, 31, 0.486);
+    width: 500px;
+    /* height: 250px; */
+    border-radius:15px;
+    color:aliceblue;
+    text-align: center;
+    /* align-self: center;  */
+    cursor: pointer;
+    margin:auto;
+}
