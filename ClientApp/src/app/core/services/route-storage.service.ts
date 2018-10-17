@@ -38,6 +38,10 @@ clear(){
   this.segments.clear();
 }
 
+get path(){
+  return this.segments.path;
+}
+
 get route() {
   let route = new Route(this.segments.segments, this.bounds);
   route.name = "My Route";

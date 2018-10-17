@@ -65,6 +65,18 @@ export class SegmentStorage implements Deserializable {
         return this.last.last;
     }
 
+    get path(){
+        let path = [];
+        this.segments.forEach(segment => {
+            segment.sections.forEach(section => {
+                
+                path = path.concat(section.path);
+            
+            })
+        })
+        console.log("PATH", path);
+        return path;
+    }
 
     get penultSection(): Section {
         return this.last.penult;
