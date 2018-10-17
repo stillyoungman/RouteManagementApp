@@ -1,4 +1,5 @@
-<div id="layout-topbar">
+<div #topbar
+    id="layout-topbar">
 
   <a (click)="logoLink()" id="logo-wrap">
       <span class="logo">
@@ -6,13 +7,15 @@
         </span>
   </a>
 
-  <div class="search-wrapper" *ngIf='isSearchRequired'>
+  <div 
+    class="search-wrapper" 
+    *ngIf='isSearchRequired'>
      
-    <input #search
+    <input #s
         id="search" 
         type="text" 
-        placeholder="Search place..."
-        (keyup)="searchKeyup(search.value)">
+        [placeholder]="url === '/create-route' ? 'Search place...' : 'Find route'"
+        (keyup)="searchKeyup(s.value)">
     
     <div id="icon">
         <i class="material-icons">

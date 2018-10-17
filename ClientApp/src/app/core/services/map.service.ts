@@ -17,9 +17,11 @@ export class MapService {
   longitude = 40.397072;
   followRoad = true;
   bounds;
+  searchInput;
 
   private _map: google.maps.Map;
   private _markerType = "start";
+  private _autocomplete: google.maps.places.Autocomplete;
 
   private _finished = false;
   private _started = false;
@@ -33,9 +35,9 @@ export class MapService {
   
   public initMap(map?: google.maps.Map) {  
     this._map = map;
-    this.routeStorage.init(map);
+    this.routeStorage.init(map);    
     this._map.setOptions(this.mapOptions) 
-    
+
     this._map.addListener('click', (event) => {
       this.addMarker(event);
     });
@@ -56,6 +58,32 @@ export class MapService {
     this.routeStorage.clear();
     this.reset();
     this.initMap(this._map);
+  }
+  public initAutocomplete(input){
+    this.searchInput = input;
+    this._autocomplete = new google.maps.places.Autocomplete(input);
+    this._autocomplete.bindTo('bounds', this._map);
+    this._autocomplete.addListener('place_changed', () => {
+     
+     let place = this._autocomplete.getPlace();
+
+     if(!place || !place.geometry) return;
+
+     if (place.geometry.viewport) {
+      this._map.fitBounds(place.geometry.viewport);
+    } else {
+      this._map.setCenter(place.geometry.location);
+      this._map.setZoom(17);  
+    }
+    })
+  }
+  public resetAutocomplete(){
+    if(this._autocomplete && this.searchInput){
+      google.maps.event.clearInstanceListeners(this.searchInput);
+
+      this._autocomplete.unbindAll();
+      this._autocomplete = undefined;
+    }
   }
   private addMarker(event) {
     var location: google.maps.LatLng = event.latLng;
@@ -78,7 +106,6 @@ export class MapService {
         if (this._markerType === "finish") {
           //known issue: wont work with undo(??)
           this._map.fitBounds(this.routeStorage.bounds);
-          console.log("bounds from rs",this.routeStorage.bounds)
           google.maps.event.clearListeners(this._map, 'click');
           this._map.setOptions({ draggableCursor: 'auto' });
           this._finished = true;
