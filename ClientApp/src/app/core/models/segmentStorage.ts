@@ -69,11 +69,12 @@ export class SegmentStorage implements Deserializable {
         let path = [];
         this.segments.forEach(segment => {
             segment.sections.forEach(section => {
-                
-                path = path.concat(section.path);
-            
+                section.path.forEach(p => {
+                    path.push(p);
+                })  
             })
         })
+        console.trace();
         console.log("PATH", path);
         return path;
     }

@@ -48,6 +48,27 @@ get route() {
   return route;
 }
 
+get checkpointsLocations(){
+  let arr = [];
+  this.segments.segments.forEach(segment => {
+    if (segment.last.markerType === 'checkpoint') { 
+      let location = segment.last.marker.location.toString().split(' ').join('')
+      location = location.slice(1, location.length-1);
+      arr.push(location);
+    }  
+  })
+  return arr;
+}
+
+get points(){
+  let result = {};
+  result['start'] = this.segments.segments[0].sections[0].marker.location.toString().split(' ').join('')
+  result['start'] = result['start'].slice(1, result['start'].length-1);
+  result['end'] = this.segments.last.last.marker.location.toString().split(' ').join('')
+  result['end'] = result['end'].slice(1, result['end'].length-1);
+  return result;
+}
+
 init(map: google.maps.Map) {
   this.map = map;
   this.markers = new MarkerStorage();

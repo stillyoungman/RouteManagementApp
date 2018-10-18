@@ -6,6 +6,7 @@ import { Observable, of, throwError } from 'rxjs';
 import { Route } from '../models/route';
 import { catchError } from 'rxjs/operators';
 import { NotificationService } from './notification.service';
+import { RouteStorageService } from './route-storage.service';
 // import 'rxjs/add/operator/catch';
 
 @Injectable({
@@ -17,7 +18,8 @@ export class WebApiService {
 
   constructor(private http: Http, 
       private app: ApplicationService,
-      private notiService: NotificationService) { 
+      private notiService: NotificationService,
+      private routeStorage: RouteStorageService) { 
     this.BASE_URL = document.getElementsByTagName('base')[0].href;
   }
 
@@ -81,5 +83,35 @@ export class WebApiService {
 
   authenticate(loginUserDto){
     return this.http.post(this.authPath + "auth", loginUserDto);
+  }
+
+  get staticMapRequest(){
+    let base = 'https://maps.googleapis.com/maps/api/staticmap?';
+    let mapParams = 'size=640x350&scale=2&format=png';
+    let pathOptions = '&path=weight:3%7Ccolor:0x283747%7C';
+    let encPath = 'enc:' + google.maps.geometry.encoding.encodePath(this.routeStorage.path);
+    let key;
+    try {
+      key = '&' + document.getElementById('api-script') 
+      .attributes['src']
+      .value.split('&')
+      .filter(str => str.includes('key'))[0]
+      .split('?')
+      .filter(str => str.includes('key'))[0] //because i dont know regExp(((
+    } catch { }
+
+    let checkpointMarkers = '';
+    this.routeStorage.checkpointsLocations.forEach(location => {
+      checkpointMarkers += '&markers=size:tiny%7Ccolor:0xD4E157%7Clabel:C%7C' + location;
+    })
+  
+    let points = this.routeStorage.points;
+    let pointsMarkers = '&markers=size:tiny%7Ccolor:0x43A047%7Clabel:C%7C' + points['start'];
+    pointsMarkers += '&markers=size:tiny%7Ccolor:0xF44336%7Clabel:C%7C' + points['end'];
+  
+    console.log(checkpointMarkers);
+    let result = base + mapParams + pointsMarkers + checkpointMarkers + pathOptions + encPath + key;
+    
+    return result;
   }
 }
