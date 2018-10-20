@@ -97,11 +97,12 @@ export class WebApiService {
     return this.http.post(this.authPath + "auth", loginUserDto);
   }
 
-  get staticMapRequest(){
+  staticMapRequest(route:Route){
     let base = 'https://maps.googleapis.com/maps/api/staticmap?';
-    let mapParams = 'size=640x330&scale=2&format=png&zoom=' + this.routeStorage.zoom;
+    // let mapParams = 'size=640x330&scale=2&format=png&zoom=' + route['zoom'];//add zoom into model!!
+    let mapParams = 'size=640x330&scale=2&format=png'
     let pathOptions = '&path=weight:3%7Ccolor:0x283747%7C';
-    let encPath = 'enc:' + google.maps.geometry.encoding.encodePath(this.routeStorage.path);
+    let encPath = 'enc:' + google.maps.geometry.encoding.encodePath(route.path);
     let key;
     try {
       key = '&' + document.getElementById('api-script') 
@@ -113,11 +114,11 @@ export class WebApiService {
     } catch { }
 
     let checkpointMarkers = '';
-    this.routeStorage.checkpointsLocations.forEach(location => {
+    route.checkpointsLocations.forEach(location => {
       checkpointMarkers += '&markers=size:tiny%7Ccolor:0xD4E157%7Clabel:C%7C' + location;
     })
   
-    let points = this.routeStorage.points;
+    let points = route.points;//getting start and end points
     let pointsMarkers = '&markers=size:tiny%7Ccolor:0x43A047%7Clabel:C%7C' + points['start'];
     pointsMarkers += '&markers=size:tiny%7Ccolor:0xF44336%7Clabel:C%7C' + points['end'];
   

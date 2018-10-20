@@ -85,7 +85,7 @@ export class RouteElementsComponent implements OnInit {
           let i = setInterval(() => {
             if (this.routeStorage.segments.last.last.markerType === 'finish' || count > 6) {
               clearInterval(i);
-              this.mapImgRef = this.api.staticMapRequest;
+              this.mapImgRef = this.api.staticMapRequest(this.routeStorage.route);
             }
           }, 1000)
         } catch {
@@ -97,7 +97,6 @@ export class RouteElementsComponent implements OnInit {
       this.elements.push(new PointElement(element));
       this.mapImgRef = '';
     }
-    console.log(element);
   }
 
 }

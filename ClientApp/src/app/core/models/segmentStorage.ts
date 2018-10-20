@@ -1,4 +1,4 @@
-///<reference path="/Users/constantine/Workspace/Repository/dotnet/RouteManagementApp/ClientApp/node_modules/@types/googlemaps/index.d.ts" />
+///<reference path="C:/_repos/routemanagementapp/ClientApp/node_modules/@types/googlemaps/index.d.ts" />
 // import { } from '@types/googlemaps';
 import { Segment } from "./segment";
 import { Section } from "./section";
@@ -65,19 +65,7 @@ export class SegmentStorage implements Deserializable {
         return this.last.last;
     }
 
-    get path(){
-        let path = [];
-        this.segments.forEach(segment => {
-            segment.sections.forEach(section => {
-                section.path.forEach(p => {
-                    path.push(p);
-                })  
-            })
-        })
-        console.trace();
-        console.log("PATH", path);
-        return path;
-    }
+   
 
     get penultSection(): Section {
         return this.last.penult;

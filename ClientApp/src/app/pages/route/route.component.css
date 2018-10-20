@@ -39,6 +39,12 @@
     display: flex;
     flex-direction: column;
 }
+.b-wrap {
+    margin: 10px;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
 
 @media only screen and (min-width: 1700px) {
     #wrap {

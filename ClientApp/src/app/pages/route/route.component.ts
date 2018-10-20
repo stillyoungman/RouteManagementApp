@@ -12,6 +12,7 @@ import { Observable } from 'rxjs';
 import { of } from 'rxjs';
 import { RouteDetailsComponent } from 'src/app/map-components/details/route-details/route-details.component';
 import { detachEmbeddedView } from '@angular/core/src/view';
+import { PrintService } from '../../core/services/print.service';
 
 @Component({
   selector: 'app-route',
@@ -56,6 +57,7 @@ export class RouteComponent implements OnInit {
     private mapService: MapService,
     private router: Router,
     private notiService: NotificationService,
+    private printService: PrintService
     ) { 
       this.asyncElements = Observable.create(observer=>{
         let i = setInterval(()=>{
@@ -132,6 +134,11 @@ export class RouteComponent implements OnInit {
     this.notiService.notify("Link copied");
   }
 
+  print(){
+    this.printService.printRouteInfo(this.userRoute); 
+    this.printService.printRouteMap(this.api.staticMapRequest(this.userRoute));
+  }
+
   fillElements(route: Route, storage) {
     let startFound = false;
     let endFound = false;
@@ -203,8 +210,7 @@ export class RouteComponent implements OnInit {
   }
 
   ngOnDestroy(){
-    console.log(this.disposable);
-    this.disposable.forEach( sub => {
+      this.disposable.forEach( sub => {
       sub.unsubscribe();
     })
   }
