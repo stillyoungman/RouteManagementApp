@@ -182,7 +182,7 @@ ClientBin/
 orleans.codegen.cs
 
 ClientApp/node_modules
-ClientApp/dist
+ClientApp/dist/
 
 # RIA/Silverlight projects
 Generated_Code/
