@@ -28,7 +28,12 @@ export class WebApiService {
   }
 
   get tokenClaims(){
-    return JSON.parse(atob(this.token.split('.')[1]));
+    try {
+      return JSON.parse(atob(this.token.split('.')[1]));
+    }
+    catch {
+      return { };
+    }
   }
 
   get tokenHeader() {
@@ -57,6 +62,17 @@ export class WebApiService {
     );
   }
 
+  updateRouteHeader(routeHeader){
+    return this.http.put(this.routeApiPath + "updateRoute",routeHeader,new RequestOptions({
+      headers: this.tokenHeader
+    })).pipe(
+      catchError( err => {
+        this.notiService.notify("Can't update route");
+        return throwError(err);
+      })
+    )
+  }
+
   getRoutes(){
     return this.http.get(this.routeApiPath + "getroutes", new RequestOptions({
       headers:this.tokenHeader
@@ -66,7 +82,11 @@ export class WebApiService {
   getRoute(id){
     return this.http.get(this.routeApiPath + `getroute?id=${id}`, new RequestOptions({
       headers:this.tokenHeader
-    }))
+    })).pipe(
+      catchError( err => {    
+        return throwError(err); 
+      })
+    )
   }
 
   register(userDto) {

@@ -35,6 +35,12 @@
     margin: 0 0 4px 0;
     /* margin: 4px 0; */
 }
+#description:disabled{
+    border:none;
+}
+#location:disabled{
+    border:none;
+}
 .save {
     float:right;
     margin:0 23px 0 0;

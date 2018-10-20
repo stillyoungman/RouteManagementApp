@@ -24,5 +24,15 @@ namespace RouteManagementApp.Entities
         public int Distance { get; set; }
         public bool isShared { get; set; }
         public ICollection<Segment> Segments { get; set; }
+
+        public void UpdateRoute(Route r){
+            this.Name = r.Name;
+            this.Description = r.Description;
+            this.Location = r.Location;
+        }
+
+        public override String ToString(){
+            return $"ID: {this.RouteId},\nuid: {this.UserId},\nName: {this.Name}";
+        }
     }
 }

@@ -13,7 +13,7 @@ using System.Collections.Generic;
 
 namespace RouteManagementApp.Controllers
 {
-    
+
     [Route("api/[controller]")]
     public class RouteController : Controller
     {
@@ -60,9 +60,10 @@ namespace RouteManagementApp.Controllers
             try
             {
                 var uid = HttpContext.GetUserId();
-                
+
                 IList<RouteDto> routesDto = new List<RouteDto>();
-                foreach( var r in _rep.GetRoutes(uid)){
+                foreach (var r in _rep.GetRoutes(uid))
+                {
                     routesDto.Add(_mapper.Map<RouteDto>(r));
                 }
                 return Ok(new
@@ -100,5 +101,35 @@ namespace RouteManagementApp.Controllers
                 });
             }
         }
+
+        [Authorize]
+        [HttpPut("[action]")]
+        public IActionResult UpdateRoute([FromBody] RouteDto routeDto)
+        {
+            try
+            {
+                var route = _mapper.Map<Route>(routeDto);
+
+                if (this.HttpContext.GetUserId() != route.UserId)
+                {
+                    return Forbid();
+                }
+
+                var dbInstance = _rep.GetRoute(route.RouteId);
+                if (dbInstance != null)
+                {
+                    dbInstance.UpdateRoute(route);
+                    _uof.Complete();
+                }
+
+                return Ok();
+            }
+            catch
+            {
+                return BadRequest();
+            }
+
+        }
     }
+
 }

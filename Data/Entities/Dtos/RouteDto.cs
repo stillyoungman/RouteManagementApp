@@ -7,6 +7,7 @@ namespace RouteManagementApp.Entities
     public class RouteDto
     {
         public int RouteId { get; set; }
+        public int UserId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public string Created { get; set; }
@@ -15,5 +16,9 @@ namespace RouteManagementApp.Entities
         public int Distance { get; set; }
         public bool isShared { get; set; }
         public ICollection<Segment> Segments { get; set; }
+
+        public override String ToString(){
+            return $"ID: {this.RouteId},\nuid: {this.UserId},\nName: {this.Name}";
+        }
     }
 }

@@ -45,6 +45,13 @@ export class Route {
             isShared: this.isShared,
             segments: this.segments
         }
+
+        if(this['userId']){
+            result['userId'] = this['userId']
+        }
+        if(this['routeId']){
+            result['routeId'] = this['routeId']
+        }
         //capitalizeFirstLetter(result);
         return result;
     }
