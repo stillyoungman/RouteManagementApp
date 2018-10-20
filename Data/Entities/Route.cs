@@ -29,6 +29,7 @@ namespace RouteManagementApp.Entities
             this.Name = r.Name;
             this.Description = r.Description;
             this.Location = r.Location;
+            this.isShared = r.isShared; 
         }
 
         public override String ToString(){

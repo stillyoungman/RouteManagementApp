@@ -4,7 +4,6 @@ import { RouteStorageService } from '../../core/services/route-storage.service';
 import { IElement } from '../../core/interfaces/IElement';
 import { PointElement, SegmentElement } from '../../core/models/element';
 import { Segment } from '../../core/models/segment';
-import html2canvas from 'html2canvas';
 import { WebApiService } from 'src/app/core/services/web-api.service';
 import { Route } from 'src/app/core/models/route';
 import { PrintService } from 'src/app/core/services/print.service';
