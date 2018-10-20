@@ -16,6 +16,7 @@ export class MapService {
   latitude = 56.126838;
   longitude = 40.397072;
   followRoad = true;
+  zoom;
   bounds;
   searchInput;
 
@@ -51,6 +52,7 @@ export class MapService {
     this.followRoad = true;
     this._finished = false;
     this._started = false;
+    this.zoom = undefined;
     this._markerType = "start";
     this.routeStorage.reset();
   }
@@ -106,6 +108,7 @@ export class MapService {
         if (this._markerType === "finish") {
           //known issue: wont work with undo(??)
           this._map.fitBounds(this.routeStorage.bounds);
+          this.routeStorage.zoom = this._map.getZoom() - 1;
           google.maps.event.clearListeners(this._map, 'click');
           this._map.setOptions({ draggableCursor: 'auto' });
           this._finished = true;

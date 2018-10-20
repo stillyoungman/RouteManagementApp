@@ -46,14 +46,6 @@ export class WebApiService {
 
   }
 
-  //remove in PRODUCTION
-  _debugGetToken(userDto){
-    this.http.post(this.authPath + 'token',userDto)
-    .subscribe( res => {
-      localStorage.setItem('t', res.json().access_token); 
-    })
-  }
-
   saveRoute(route: Route){
     return this.http.post(this.routeApiPath + "SaveRoute", route, new RequestOptions({
       headers: this.tokenHeader
@@ -87,7 +79,7 @@ export class WebApiService {
 
   get staticMapRequest(){
     let base = 'https://maps.googleapis.com/maps/api/staticmap?';
-    let mapParams = 'size=640x350&scale=2&format=png';
+    let mapParams = 'size=640x330&scale=2&format=png&zoom=' + this.routeStorage.zoom;
     let pathOptions = '&path=weight:3%7Ccolor:0x283747%7C';
     let encPath = 'enc:' + google.maps.geometry.encoding.encodePath(this.routeStorage.path);
     let key;
@@ -109,7 +101,6 @@ export class WebApiService {
     let pointsMarkers = '&markers=size:tiny%7Ccolor:0x43A047%7Clabel:C%7C' + points['start'];
     pointsMarkers += '&markers=size:tiny%7Ccolor:0xF44336%7Clabel:C%7C' + points['end'];
   
-    console.log(checkpointMarkers);
     let result = base + mapParams + pointsMarkers + checkpointMarkers + pathOptions + encPath + key;
     
     return result;

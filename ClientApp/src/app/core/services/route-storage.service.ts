@@ -18,6 +18,7 @@ export class RouteStorageService {
 
   _elements;
   elementPicked = new EventEmitter();
+  zoom;
 
   constructor() {
     this._elements = [];
@@ -45,6 +46,7 @@ get path(){
 get route() {
   let route = new Route(this.segments.segments, this.bounds);
   route.name = "My Route";
+  route['zoom'] = this.zoom;
   return route;
 }
 
