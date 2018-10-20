@@ -88,7 +88,11 @@ export class RouteComponent implements OnInit {
         this.mapService.populateFromRoute(this.userRoute);
         this.elementsLoaded = this.fillElements(this.userRoute, this.elements);        
       }, err => {
-        //here should be stop of loading and render the message
+        if(err.status === 403){
+          this.router.navigate(['/']);
+        } else {
+          this.notiService.notify("oops, something went wrong(")
+        }
       }, () => {
         
       })
