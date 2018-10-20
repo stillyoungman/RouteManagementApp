@@ -6,7 +6,8 @@ import { PointElement, SegmentElement } from '../../core/models/element';
 import { Segment } from '../../core/models/segment';
 import html2canvas from 'html2canvas';
 import { WebApiService } from 'src/app/core/services/web-api.service';
-import { NotificationService } from 'src/app/core/services/notification.service';
+import { Route } from 'src/app/core/models/route';
+import { PrintService } from 'src/app/core/services/print.service';
 
 @Component({
   selector: 'route-elements',
@@ -22,7 +23,7 @@ export class RouteElementsComponent implements OnInit {
   constructor(private routeStorage: RouteStorageService,
     private mapService: MapService,
     private api: WebApiService,
-    private nf: NotificationService) {
+    private printService: PrintService) {
   }
 
   ngOnInit() {
@@ -57,17 +58,21 @@ export class RouteElementsComponent implements OnInit {
 
   print() {
 
-    if (this.mapImgRef && this.mapImgRef.length < 8191) {
-      let link = document.createElement('a');
-      link.setAttribute('href', this.mapImgRef);
-      link.setAttribute('download', 'route-snapshot.png');
-      link.setAttribute('target', '_blank');
-      link.style.display = 'none';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    } else if (this.mapImgRef.length < 8191) {
-      this.nf.notify("Can't print (too long)");
+    if(this.mapImgRef){
+      this.printService.printRouteInfo(this.routeStorage.route);
+      this.printService.printRouteMap(this.mapImgRef);
+    } else {
+      let count = 0;
+      let i = setInterval(()=>{
+        if(this.mapImgRef){
+          count++;
+          clearInterval(i);
+          this.printService.printRouteInfo(this.routeStorage.route);
+          this.printService.printRouteMap(this.mapImgRef);
+        } else if (count > 10){
+          clearInterval(i);
+        }
+      }, 500)
     }
   }
 
