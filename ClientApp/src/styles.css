@@ -25,7 +25,7 @@ input:not([type]), input[type=text]:not(.browser-default), input[type=password]:
     border: none;
 }
 .back-img{
-    background-image:url("assets/img/main.jpeg");
+    background-image:url("http://res.cloudinary.com/dcuh6bqoe/image/upload/q_auto/v1540058398/routeManagementApp/main.jpg")
 }
 .notvsbl{
     visibility: hidden;
