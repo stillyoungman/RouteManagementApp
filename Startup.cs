@@ -37,12 +37,7 @@ namespace RouteManagementApp
                 configuration.RootPath = "ClientApp/dist";
             });
 
-            var tldbStr = @"Server=127.0.0.1,1433;
-                        Database=mojave;
-                        User Id=SA;
-                        Password=D3plP@$$_!cvB";
-
-            services.AddDbContext<MainContext>(options => options.UseSqlServer(tldbStr));
+            services.AddDbContext<MainContext>(options => options.UseSqlServer(Configuration.GetConnectionString("hpDb")));
 
             services.AddScoped<IRouteRepository, RouteRepository>();
             services.AddScoped<IUserRepository,UserRepository>();
