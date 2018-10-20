@@ -47,6 +47,7 @@ import { HttpModule } from '@angular/http';
 import { NamePipe } from './core/helpers/name.pipe';
 import { LoggedInGuard } from './core/helpers/loggedInGuard';
 import { ToIndex } from './core/helpers/toIndex';
+import { ShorterPipe } from './core/helpers/shorter.pipe';
 
 
 
@@ -78,6 +79,7 @@ import { ToIndex } from './core/helpers/toIndex';
     RouteDetailsComponent,
     PointDetailsComponent,
     SegmentDetailsComponent,
+    ShorterPipe
   ],
   imports: [
     BrowserModule,
