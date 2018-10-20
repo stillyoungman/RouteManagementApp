@@ -14,11 +14,21 @@
         [AsyncElements]='asyncElements'
         [AreaHeight]='asyncHeight'
         ></route-details>
-    <div id="card">
+    <div class='card-wrap'>
+        <div id="card">
         <route-filler 
         *ngIf="userRoute" 
         [Route]="userRoute"></route-filler>
     </div>
+    <button  
+    (click)="copyLink()"
+    *ngIf='userRoute && userRoute.isShared'
+    style="margin: 10px auto" 
+    class="save btn waves-effect waves-light blue-grey lighten-1">
+    Link
+    <i class="material-icons right">link</i>
+  </button>
+</div>
 </div>
 <div class='btn-wrap'>
     <div class="chip"

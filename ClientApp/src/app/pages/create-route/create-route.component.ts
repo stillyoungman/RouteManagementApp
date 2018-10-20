@@ -1,4 +1,4 @@
-///<reference path="/Users/constantine/Workspace/Repository/dotnet/RouteManagementApp/ClientApp/node_modules/@types/googlemaps/index.d.ts" />
+///<reference path="C:/_repos/routemanagementapp/ClientApp/node_modules/@types/googlemaps/index.d.ts" />
 // import { } from '@types/googlemaps'
 import { Component, OnInit, ViewChild, HostListener } from '@angular/core';
 import { MapService } from 'src/app/core/services/map.service';

@@ -1,4 +1,4 @@
-///<reference path="/Users/constantine/Workspace/Repository/dotnet/RouteManagementApp/ClientApp/node_modules/@types/googlemaps/index.d.ts" />
+///<reference path="C:/_repos/routemanagementapp/ClientApp/node_modules/@types/googlemaps/index.d.ts" />
 // import { } from '@types/googlemaps'
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ApplicationService } from 'src/app/core/services/application.service';
@@ -83,7 +83,7 @@ export class RouteComponent implements OnInit {
     sub1 = this.route.paramMap.subscribe(params => {
       this.routeId = params.get("id");
       sub2 = this.api.getRoute(this.routeId).subscribe(res => {
-        this.userRoute = Route.deserialize(res.json().route)
+        this.userRoute = Route.deserialize(res.json().route);
         this.loaded = true;
         this.mapService.populateFromRoute(this.userRoute);
         this.elementsLoaded = this.fillElements(this.userRoute, this.elements);        
@@ -114,8 +114,22 @@ export class RouteComponent implements OnInit {
       queryParams: queryParams,
       relativeTo: this.route
     });
+  }
 
-  
+  copyLink(){
+    const link = this.api.BASE_URL + this.router.url.slice(1).split('?')[0];
+    
+    const el = document.createElement('textarea');
+    el.value = link;
+    el.setAttribute('readonly', '');
+    el.style.position = 'absolute';
+    el.style.left = '-9999px';
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
+    
+    this.notiService.notify("Link copied");
   }
 
   fillElements(route: Route, storage) {
