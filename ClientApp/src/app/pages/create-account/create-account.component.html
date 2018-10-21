@@ -1,27 +1,52 @@
 <div id="wrap">
-    <h4>Who are you?</h4>
+  <form [formGroup]="registerForm">
+    <h4 (click)="headerClicked()">Who are you?</h4>
     <div class="input-field col s6">
-      <input id="name" type="text" [(ngModel)]="name">
+      <input 
+        id="name" 
+        type="text" 
+        formControlName="name">
       <label for="name">Your Name</label>
     </div>
     <div class="input-field col s6">
-      <input id="email" type="email" [(ngModel)]="email">
+      <input 
+      id="email" 
+      type="email"
+      formControlName="email">
       <label for="email">Email</label>
     </div>
     <div class="input-field col s6">
-        <input id="password" type="password" class="password"  [(ngModel)]="password">
+        <input #pass
+        id="password" 
+        type="password"
+        class="password"
+        formControlName="pass"
+        (keyup)="confirmPassword(pass.value)"
+        >
         <label for="password">Password</label>
       </div>
       <div class="input-field col s6">
-          <input id="conf-password" type="password" class="password">
+          <input #conf
+          id="conf-password" 
+          type="password" 
+          class="password"
+          (keyup)="confirmPassword(null,conf.value)">
           <label for="conf-password">Confirm password</label>
         </div>
     <div class="btns">
-    <button class="btn waves-effect waves-light grey lighten-1" (click)="cancel()">
+    <button class="btn waves-effect waves-light grey lighten-1" 
+    (click)="cancel()">
       <i class="material-icons">close</i>
-    </button><button class="btn waves-effect waves-light green lighten-1" (click)="submit()" >
+    </button>
+    <button class="btn waves-effect waves-light green lighten-1" 
+    (click)="submit()"
+    [disabled]="!isValid ? ' ' : null">
       <i class="material-icons" style="margin:0 15px">arrow_forward_ios</i>
     </button>
     </div>
-    <p class="error-message" *ngIf="authService.errorMessage">{{authService.errorMessage}}</p>
+  </form>
+    <p class="error-message" *ngIf="errorMessage">{{errorMessage}}</p>
+    <div *ngIf='loading && !authService.errorMessage' id="progress">
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
     </div>
