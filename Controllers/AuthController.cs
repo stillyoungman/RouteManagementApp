@@ -8,6 +8,7 @@ using Microsoft.IdentityModel.Tokens;
 using RouteManagementApp.Entities;
 using System.Data;
 using System.Linq;
+using Microsoft.Extensions.Options;
 using RouteManagementApp.Data;
 using RouteManagementApp.Services;
 using AutoMapper;
@@ -22,14 +23,17 @@ namespace RouteManagementApp.Controllers
         private IUserRepository _rep;
         private IUserService _userService;
         private IMapper _mapper;
+        private readonly AppSettings _appSettings;
         public AuthController(
             IUserRepository rep, 
             IUserService userService,
-            IMapper mapper)
+            IMapper mapper,
+            IOptions<AppSettings> appSettings)
         {
             _rep = rep;
             _userService = userService;
             _mapper = mapper;
+            _appSettings = appSettings.Value;
         }
 
         [HttpPost("auth")]
@@ -44,7 +48,7 @@ namespace RouteManagementApp.Controllers
                 return BadRequest(new { message = "Username or password is incorrect" });
             }
 
-            var key = Encoding.ASCII.GetBytes(KEY);
+            var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
 
             var tokenHandler = new JwtSecurityTokenHandler();
             var tokenDescriptor = new SecurityTokenDescriptor
