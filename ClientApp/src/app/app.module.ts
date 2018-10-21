@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule }  from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './/app-routing.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { LayoutWrapperComponent } from './layout-wrapper/layout-wrapper.component';
 import { LayoutTopbarComponent } from './layout-topbar/layout-topbar.component';
@@ -84,6 +84,7 @@ import { ShorterPipe } from './core/helpers/shorter.pipe';
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
