@@ -1,5 +1,5 @@
-///<reference path="/Users/constantine/Workspace/Repository/dotnet/RouteManagementApp/ClientApp/node_modules/@types/googlemaps/index.d.ts" />
-//import { } from '@types/googlemaps';
+//<reference path="/Users/constantine/Workspace/Repository/dotnet/RouteManagementApp/ClientApp/node_modules/@types/googlemaps/index.d.ts" />
+import { } from '@types/googlemaps';
 import { Injectable, EventEmitter } from '@angular/core';
 import { RouteStorageService } from './route-storage.service';
 import { Marker } from '../models/marker';

@@ -11,7 +11,7 @@ export class AuthCardComponent implements OnInit {
 
   name;
 
-  constructor(private auth: AuthService, private app: ApplicationService) {
+  constructor(public auth: AuthService, private app: ApplicationService) {
     
   }
 

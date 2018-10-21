@@ -11,7 +11,7 @@ import { Route } from '../../core/models/route';
 export class ElementCardComponent implements OnInit {
 
   disposable = [];
-  private _element;
+  public _element;
   constructor(private routeStorage: RouteStorageService) { }
 
   ngOnInit() {

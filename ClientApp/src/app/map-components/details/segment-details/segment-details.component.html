@@ -1,10 +1,9 @@
 <div #wrap>
 <div id='segment' 
-  class='info-wrap'
-  (click)="click(segment)">
+  class='info-wrap'>
   <h6>{{Element.name}}</h6>
   <p *ngIf="Element.date">Date: {{Element.date}}</p>
-  <p *ngIf="Element.time">Travel time: {{Element.time}} minutes</p>
+  <p *ngIf="Element['time']">Travel time: {{Element['time']}} minutes</p>
   <p *ngIf="Element.comment">Comment: {{Element.comment}}</p>
 </div>
 <div id='checkpoint'

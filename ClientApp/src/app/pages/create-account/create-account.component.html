@@ -1,6 +1,6 @@
 <div id="wrap">
   <form [formGroup]="registerForm">
-    <h4 (click)="headerClicked()">Who are you?</h4>
+    <h4>Who are you?</h4>
     <div class="input-field col s6">
       <input 
         id="name" 
@@ -21,7 +21,7 @@
         type="password"
         class="password"
         formControlName="pass"
-        (keyup)="confirmPassword(pass.value)"
+        (keyup)="confirmPassword(pass.value,null)"
         >
         <label for="password">Password</label>
       </div>

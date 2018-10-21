@@ -25,7 +25,7 @@ export class CreateAccountComponent implements OnInit {
   loading;
 
   constructor(private app:ApplicationService, 
-    private authService: AuthService) {
+    public authService: AuthService) {
 
      }
 

@@ -1,5 +1,5 @@
-///<reference path="C:/_repos/routemanagementapp/ClientApp/node_modules/@types/googlemaps/index.d.ts" />
-// import { } from '@types/googlemaps';
+//<reference path="C:/_repos/routemanagementapp/ClientApp/node_modules/@types/googlemaps/index.d.ts" />
+import { } from '@types/googlemaps';
 import { Segment } from "./segment";
 
 // import { } from '@types/googlemaps';

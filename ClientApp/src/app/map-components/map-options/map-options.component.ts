@@ -8,7 +8,7 @@ import { MapService } from '../../core/services/map.service';
 })
 export class MapOptionsComponent implements OnInit {
 
-  constructor(private ms: MapService) { }
+  constructor(public ms: MapService) { }
 
   ngOnInit() {
 

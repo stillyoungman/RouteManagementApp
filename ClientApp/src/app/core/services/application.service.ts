@@ -7,8 +7,8 @@ import { Observable, Subject } from 'rxjs';
 })
 export class ApplicationService {
 
-  element$:Subject<{index:number;height:number}>;
-  search$:Subject<{string}>;
+  public element$:Subject<{index:number;height:number}>;
+  public search$:Subject<{string}>;
 
   constructor(public router: Router) { 
     this.element$ = new Subject();

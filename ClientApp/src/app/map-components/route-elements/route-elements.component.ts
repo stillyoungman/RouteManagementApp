@@ -15,7 +15,7 @@ import { PrintService } from 'src/app/core/services/print.service';
 })
 export class RouteElementsComponent implements OnInit {
 
-  private elements;
+  public elements;
   private pickEmitter: EventEmitter<{}>;
   private mapImgRef;
 

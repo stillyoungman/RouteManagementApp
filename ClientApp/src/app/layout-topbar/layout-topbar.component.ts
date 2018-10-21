@@ -51,7 +51,7 @@ export class LayoutTopbarComponent implements OnInit {
     else this.app.router.navigate(["/"]);
   }
 
-  private get isSearchRequired() {
+  get isSearchRequired() {
     return this.url === "/create-route" || this.url === "/my-routes";
   }
 

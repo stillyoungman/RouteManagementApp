@@ -1,5 +1,5 @@
-///<reference path="C:/_repos/routemanagementapp/ClientApp/node_modules/@types/googlemaps/index.d.ts" />
-// import { } from '@types/googlemaps'
+//<reference path="C:/_repos/routemanagementapp/ClientApp/node_modules/@types/googlemaps/index.d.ts" />
+import { } from '@types/googlemaps'
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ApplicationService } from 'src/app/core/services/application.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';

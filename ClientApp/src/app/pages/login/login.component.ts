@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   loading;
 
   constructor(private app: ApplicationService, 
-    private authService: AuthService) { }
+    public authService: AuthService) { }
 
   ngOnInit() {
     this.authForm = new FormGroup({
