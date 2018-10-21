@@ -16,9 +16,73 @@ input[type=text]:not(.browser-default):focus:not([readonly]){
     -webkit-box-shadow: none;
     box-shadow: none;
 }
+input:not([type]):focus:not([readonly]){
+    border-bottom: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+input:not([type]), input[type=text]:not(.browser-default), input[type=password]:not(.browser-default), input[type=email]:not(.browser-default), input[type=url]:not(.browser-default), input[type=time]:not(.browser-default), input[type=date]:not(.browser-default), input[type=datetime]:not(.browser-default), input[type=datetime-local]:not(.browser-default), input[type=tel]:not(.browser-default), input[type=number]:not(.browser-default), input[type=search]:not(.browser-default), textarea.materialize-textarea {
+    border: none;
+}
 .back-img{
-    background-image:url("assets/img/main.jpeg");
+    background-image:url("http://res.cloudinary.com/dcuh6bqoe/image/upload/q_auto/v1540058398/routeManagementApp/main.jpg")
 }
 .notvsbl{
     visibility: hidden;
+}
+.error-message{
+    color: rgba(207, 30, 30, 0.863);
+    text-align: center;
+    margin-top: 20px;
+}
+.mat-progress-bar-buffer {
+    background-color: rgba(72, 201, 175, 0.322);
+}
+.mat-progress-bar-fill::after {
+    background-color: #48C9B0;
+}
+.mat-progress-bar-background {
+    fill: transparent;
+}
+#map {
+    margin: 5px 5px 5px 5px;
+    height: 500px;
+    min-width: 300px;
+    border-radius:3px;
+    border: 1px solid #CCD1D1;
+}
+#card {
+    height:250px;
+    width:480px;
+    min-width: 400px;
+    border: 1px solid rgb(186, 204, 212);
+    border-radius:4px;
+    background-color:rgba(247, 247, 247, 0.863);
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+#card:hover{
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+.info-wrap {
+    /* border:1px solid gray; */
+    padding: 5px;
+    width: 300px;
+    margin: 7px;
+    box-shadow: 0 3px 0.5rem #d9d9d9;
+    border-radius:3px;
+    word-wrap: break-word;
+    background-color: rgba(255, 255, 255, 0.377);
+}
+.info-wrap:hover{
+    box-shadow: 1px 4px 0.5rem #d9d9d9;
+}
+.invis {
+    display:none;
+}
+.hidden-overflow {
+    overflow:hidden;
+}
+#progress{
+    margin: 40px 10px 2px 0;
 }

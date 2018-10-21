@@ -60,7 +60,14 @@ export class Section {
             marker: this.marker,
             distance: this.distance,
         }
-        object["path"] = this.path.toString();//one attribute in db
+        object["path"] = JSON.stringify(this.path);//one attribute in db
         return object;
+    }
+
+    static deserialize(input,m):Section{
+        let result:Section =  Object.assign(new Section(null,null), input);
+        result.marker = Marker.deserialize(input.marker)
+        result.path = JSON.parse(input.path);
+        return result;
     }
 }

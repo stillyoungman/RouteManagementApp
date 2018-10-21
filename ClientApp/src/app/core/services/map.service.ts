@@ -5,6 +5,7 @@ import { RouteStorageService } from './route-storage.service';
 import { Marker } from '../models/marker';
 import { Section } from '../models/section';
 import { Http } from '@angular/http'
+import { Route } from '../models/route';
 
 @Injectable({
   providedIn: 'root'
@@ -15,10 +16,15 @@ export class MapService {
   latitude = 56.126838;
   longitude = 40.397072;
   followRoad = true;
-  isFinished = false;
+  zoom;
+  bounds;
+  searchInput;
+
   private _map: google.maps.Map;
   private _markerType = "start";
-  
+  private _autocomplete: google.maps.places.Autocomplete;
+
+  private _finished = false;
   private _started = false;
 
   elementCreated = new EventEmitter(true);
@@ -28,27 +34,66 @@ export class MapService {
     this.directionsService = new google.maps.DirectionsService();
    }
   
-  public initMap(map: google.maps.Map) {
+  public initMap(map?: google.maps.Map) {  
     this._map = map;
-    this.routeStorage.init(map);
-       
+    this.routeStorage.init(map);    
+    this._map.setOptions(this.mapOptions) 
+
     this._map.addListener('click', (event) => {
       this.addMarker(event);
     });
   }
+  public initMapForShow(map: google.maps.Map){
+    this._map = map;
+    this.routeStorage.init(map);
+    // this._map.setOptions(this.optionsForShow);
+  }
   public reset(){
     this.followRoad = true;
-    this.isFinished = false;
-    this._markerType = "start";
+    this._finished = false;
     this._started = false;
+    this.zoom = undefined;
+    this._markerType = "start";
     this.routeStorage.reset();
+  }
+  public clearMap(){
+    this.routeStorage.clear();
+    this.reset();
+    this.initMap(this._map);
+  }
+  public initAutocomplete(input){
+    this.searchInput = input;
+    this._autocomplete = new google.maps.places.Autocomplete(input);
+    this._autocomplete.bindTo('bounds', this._map);
+    this._autocomplete.addListener('place_changed', () => {
+     
+     let place = this._autocomplete.getPlace();
+
+     if(!place || !place.geometry) return;
+
+     if (place.geometry.viewport) {
+      this._map.fitBounds(place.geometry.viewport);
+    } else {
+      this._map.setCenter(place.geometry.location);
+      this._map.setZoom(17);  
+    }
+    })
+  }
+  public resetAutocomplete(){
+    if(this._autocomplete && this.searchInput){
+      google.maps.event.clearInstanceListeners(this.searchInput);
+
+      this._autocomplete.unbindAll();
+      this._autocomplete = undefined;
+    }
   }
   private addMarker(event) {
     var location: google.maps.LatLng = event.latLng;
 
     let marker = new Marker(`Point #${this.routeStorage.markers.pointCounter}`, location, this._markerType);
     this.populateMarker(marker);
-
+    this.routeStorage.bounds.extend(location);
+    
     //possibly not necessary 
     this.routeStorage.markers.push(marker);
 
@@ -61,9 +106,12 @@ export class MapService {
         this.elementCreated.emit(this.routeStorage.segments.last);
 
         if (this._markerType === "finish") {
+          //known issue: wont work with undo(??)
+          this._map.fitBounds(this.routeStorage.bounds);
+          this.routeStorage.zoom = this._map.getZoom() - 1;
           google.maps.event.clearListeners(this._map, 'click');
           this._map.setOptions({ draggableCursor: 'auto' });
-          this.isFinished = true;
+          this._finished = true;
           this.isRouteFinishedEvent.emit(true);
         }
         else {
@@ -110,14 +158,6 @@ export class MapService {
           .setDistance(response.routes[0].legs[0].distance.value)
           .show();
       }
-      // if (status == google.maps.DirectionsStatus.OK && response) {
-      //   this.viewData.sectionStorage.last
-      //     .setPath(response.routes[0].overview_path)  //array of coords
-      //     .setDistance(response.routes[0].legs[0].distance.value)
-      //     .show();
-      //   console.log(this.viewData.sectionStorage.last);
-      //   console.log(response);
-      // }
     });
 
   }
@@ -130,6 +170,26 @@ export class MapService {
       
   }
   
+  public populateFromRoute(route:Route){
+    // this.clearMap();
+      this._map.setCenter(route.bounds.getCenter());
+    
+    this.bounds = route.bounds;
+
+    setTimeout(()=>{ 
+      this._map.fitBounds(route.bounds);
+    }, 500)
+    route.segments.forEach( segment => {
+      segment.sections.forEach( section => {
+        section.polylineOptions = this.polylineOptions;
+        section.map = this._map;
+        this._markerType = section.markerType;
+        this.populateMarker(section.marker);
+        section.show();
+      })
+    })
+  }
+  //very bad practice!!!! dont do this again! (i need some sleep)
   public get markerType(){
     return this._markerType;
   }
@@ -138,6 +198,9 @@ export class MapService {
   }
   public get isStarted(){
     return this._started;
+  }
+  public get isFinished(){
+    return this._finished;
   }
   public get map(){
     return this._map;
@@ -152,6 +215,22 @@ export class MapService {
       mapTypeControl: false,
       streetViewControl: false,
       rotateControl: false,
+    }
+  }
+  public get optionsForShow(){
+    return {
+      mapTypeId: google.maps.MapTypeId.TERRAIN,
+      scrollwheel: true,
+      mapTypeControl: false,
+      streetViewControl: false,
+      rotateControl: false,
+    }
+  }
+  public fitBounds(){
+    if (this.bounds){
+      setTimeout(()=>{
+        this._map.fitBounds(this.bounds);
+      },200);
     }
   }
   public get polylineOptions(): google.maps.PolylineOptions {

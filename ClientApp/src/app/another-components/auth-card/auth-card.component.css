@@ -1,0 +1,84 @@
+.menu {
+    float: right;
+    /* width: 200px; */
+    height: 90px;
+    margin-top:5px;
+    margin-right:100px;
+    /* border: 1px solid rgb(0, 174, 255); */
+}
+.auth {
+    text-align: center;
+}
+#or{
+    margin:0;
+    font-size:0.7em;
+    cursor: default;
+}
+.mbtn {
+    background-color:transparent;
+    font-size: 1em;
+}
+#profile{
+    min-width:170px;
+    display: flex;
+    flex-wrap:wrap;
+    justify-content: space-around;
+}
+#acc-img{
+    width: 60px;
+    height: 60px;
+}
+#user-name{
+    align-self: center;
+    font-size: 1.3em;
+    margin: 0 10px;
+    cursor: default;
+}
+.prof-btn{
+    height: 30px;
+    border-radius:2px;
+    display: flex;
+    cursor: pointer;
+    justify-content:center;
+    align-items: center;
+}
+#drop-down{
+    width: 85%;
+    height:30px;
+}
+.wrap{
+    display:flex;
+}
+#drop-down:hover #drop-content{
+    display: block;
+}
+#logout{
+    width:15%;
+}
+.prof-btn:hover{
+    background-color:rgba(208, 209, 209, 0.137);
+}
+#drop-content{
+    display:none;
+    position: absolute;
+    margin-top:28px;
+    /* padding-top:10px; */
+    /* display:block; */
+    width:140px;
+    /* height:100px; */
+    z-index:1;
+}
+.drop-item{
+    /* background-color:rgba(255, 255, 255, 0.918); */
+    background-color:rgba(208, 209, 209, 0.425);
+   
+    border-radius:2px;
+    display: block;
+    padding:3px 10px;
+    color:black;
+    text-decoration: none;
+}
+.drop-item:hover{
+    background-color: rgba(247, 249, 249, 0.712);
+    border:1px solid rgb(166, 167, 167);
+}

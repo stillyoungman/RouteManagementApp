@@ -34,3 +34,9 @@ export function createProperties(item){
     }
     else item.properties = "";
 }
+
+export function deserializeProperties(item){
+	if (item.properties){
+		return Object.assign(item,JSON.parse(item.properties))
+	} else return item;
+}

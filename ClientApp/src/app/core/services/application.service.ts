@@ -1,12 +1,19 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApplicationService {
 
-  constructor(public router: Router) { }
+  element$:Subject<{index:number;height:number}>;
+  search$:Subject<{string}>;
+
+  constructor(public router: Router) { 
+    this.element$ = new Subject();
+    this.search$ = new Subject();
+  }
 
   saveBackLink(){
     if (!(this.router.url === "/login" || this.router.url === "/create-account")){
@@ -26,5 +33,4 @@ export class ApplicationService {
   get url(){
     return this.router.url;
   }
-  
 }

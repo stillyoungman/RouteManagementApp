@@ -24,8 +24,6 @@ export class Marker {
         this.gInstance =  new google.maps.Marker(markerOptions);
     }
 
-    
-
     toJSON(){
         return this.object2Model();
     }
@@ -34,30 +32,27 @@ export class Marker {
         var result = {
             name: this.name,
             type: this.type,
+            comment: this.comment,
             location: JSON.stringify(this.location),
             properties: {}
         }
 
         if(this.isRestRequired && this.rest){
-            result.properties["arrival"];
+            result.properties["rest"] = this.rest;
         }
         if(this.isDateRequired && this.date){
-            result.properties["date"];
+            result.properties["date"] = this.date;
         }
-
-        // if(this.arrival) {
-        //     result.properties["arrival"] = this.arrival;
-        // }
-        // if(this.departure){
-        //     result.properties["departure"] = this.departure;
-        // }
-        // if(this.rest){
-        //     result.properties["rest"] = this.arrival;
-        // }
-
         createProperties(result);
-        //capitalizeFirstLetter(result);
         return result;
     }
+    static deserialize(m){
+        let result:Marker = Object.assign(new Marker(null,null,null),m);
+        result.location = JSON.parse(m.location);
 
+        if (m.type !== 'inter' && m.properties){
+        result = Object.assign(result, JSON.parse(m.properties));
+        }
+        return result;
+    }
 }

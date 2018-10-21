@@ -2,43 +2,53 @@
 
 #layout-topbar {
     background-color: rgba(247, 249, 249, 0.712);
-    display:block;
+    display:flex;
+    justify-content: space-between;
     height:100px;
     width:100%;
     padding:0;
     margin:5px 0 0 0;
     /* border-radius:10px; */
 }
+#logo-wrap {
+    margin: 0 0 0 40px;
+}
 .logo {
-    display:inline-block;
+    /* display:inline-block; */
     margin-top:5px;
     margin-left: 5%;
     cursor: pointer;
 }
 img {
     height: 90px;
+    margin: inherit;
 }
 #name {
-    display: inline-block;
+    /* display: inline-block; */
     font-family: 'Ubuntu', sans-serif;
     color: #ECF0F1;
     font-size: 2em;
     margin: 10px 25px;
     vertical-align: top;
 }
-.menu {
-    float: right;
-    width: 200px;
-    height: 90px;
-    margin-right:5%;
-    /* border: 3px solid #B3E5FC; */
+.search-wrapper {
+    align-self: center;
+    width:40%;
+    height:50px;
+    /* background-color: antiquewhite; */
+    margin: 0 auto;
+    display: flex;
 }
-.auth {
-    text-align: center;
+#search {
+    width:80%;
+    padding: 0 20px;
+    font-size: 1.3em;
+    color:#34495E;
 }
-.mbtn {
-    background-color:transparent;
-    font-size: 1em;
+#icon {
+    cursor:pointer;
+    align-self: center;
 }
+
 
 

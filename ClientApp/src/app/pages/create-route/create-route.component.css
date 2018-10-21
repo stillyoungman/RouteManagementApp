@@ -1,3 +1,9 @@
+@media only screen and (min-width: 1800px) {
+    .wrap {
+       margin: 0 200px; 
+    }
+}
+
 .wrap {
     display: flex;
     flex-wrap:wrap;
@@ -16,13 +22,6 @@
 #elements {
     flex-grow: 4;
     order: 2;
-}
-#map {
-    margin: 5px 5px 5px 5px;
-    height: 500px;
-    min-width: 300px;
-    border-radius:3px;
-    border: 1px solid #CCD1D1;
 }
 
 

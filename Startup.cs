@@ -16,10 +16,6 @@ using RouteManagementApp.Helpers;
 using RouteManagementApp.Services;
 using AutoMapper;
 
-//isDevelopment
-using RouteManagementApp.Debug;
-
-
 namespace RouteManagementApp
 {
     public class Startup
@@ -41,17 +37,12 @@ namespace RouteManagementApp
                 configuration.RootPath = "ClientApp/dist";
             });
 
-            var tldbStr = @"Server=127.0.0.1,1433;
-                        Database=mojave;
-                        User Id=SA;
-                        Password=D3plP@$$_!cvB";
+            services.AddDbContext<MainContext>(options => options.UseSqlServer(Configuration.GetConnectionString("hpDb")));
 
-            services.AddDbContext<MainContext>(options => options.UseSqlServer(tldbStr));
-
-            services.AddScoped<IRouteRepository, MockRouteRepository>();
-            services.AddScoped<IUserRepository,MockUserRepository>();
-            services.AddScoped<IUserService,MockUserService>();
-            services.AddScoped<IUnitOfWork,MockUnitOfWork>();
+            services.AddScoped<IRouteRepository, RouteRepository>();
+            services.AddScoped<IUserRepository,UserRepository>();
+            services.AddScoped<IUserService,UserService>();
+            services.AddScoped<IUnitOfWork,UnitOfWork>();
             
             services.AddAutoMapper();
 

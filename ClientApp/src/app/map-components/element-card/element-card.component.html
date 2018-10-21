@@ -3,7 +3,9 @@
   <!-- <div>{{_element.type}}</div> -->
   <div id="filler-wrap" [ngSwitch]="type">
     <segment-filler [Element]="_element" *ngSwitchCase="'segment'"></segment-filler>
-    <point-filler *ngSwitchDefault [Element]="_element"></point-filler>
+    <route-filler [Route]="_element" *ngSwitchCase="'route'"></route-filler>
+    <point-filler [Element]="_element" *ngSwitchDefault></point-filler>
+    
     <!-- <div >{{type}}</div> -->
   </div>
 

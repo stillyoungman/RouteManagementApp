@@ -1,0 +1,61 @@
+#wrap {
+    margin: 0 auto;
+    /* border:2px solid slateblue; */
+    height: 700px;
+    padding:10px 15px;
+}
+#map {
+    height: 600px;
+}
+#progress {
+    margin:300px 200px;
+}
+.chip{
+    font-size:1.5em;
+    cursor: pointer;
+}
+.active {
+    background-color:silver;
+}
+.btn-wrap {
+    width: 200px;
+    margin: 20px auto;
+}
+#details{
+    margin: 5px 5px 5px 5px;
+    height: 600px;
+    min-width: 300px;
+    border-radius:3px;
+}
+.fl {
+    display:flex;
+    justify-content: space-evenly;
+}
+#card {
+    padding:0 0 0 25px; 
+    float:right;
+}
+.card-wrap {
+    display: flex;
+    flex-direction: column;
+}
+.b-wrap {
+    margin: 10px;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+@media only screen and (min-width: 1700px) {
+    #wrap {
+        width:70%;
+    }
+}
+
+@media only screen and (max-width: 1500px) {
+    #wrap {
+        width:90%;
+        
+    }
+}
+

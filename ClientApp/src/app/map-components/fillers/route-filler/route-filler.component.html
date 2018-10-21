@@ -1,3 +1,46 @@
-<p>
-  route-filler works!
-</p>
+<form>
+  <input id="name" 
+    name="name" 
+    placeholder="Route name" 
+    class='c' 
+    [(ngModel)]="Route.name"
+    [attr.disabled]="isOwner ? null : ''">
+  <span></span>
+  <label name="description" 
+    for="description">Description</label>
+  <textarea [(ngModel)]="Route.description"
+    [attr.disabled]="isOwner ? null : ''"
+    id="description"
+    name="description" 
+    class='c' 
+    placeholder="Describe your route" ></textarea>
+  <label name="location" 
+  for="location">
+  Location
+</label>
+<button 
+    *ngIf="isOwner"
+    class="save btn waves-effect waves-light blue-grey lighten-1"
+    (click)="save()" >
+    {{btnText}}
+    <i class="material-icons right">save</i>
+  </button>
+  <input [(ngModel)]="Route.location"
+    id="location" 
+    name="location"
+    class='c'
+    placeholder="Place of beginning"
+    [attr.disabled]="isOwner ? null : ''">
+    <span></span><br>
+    <div *ngIf="isOwner">
+      <label for="public"
+      style="margin: 0 24px 0 0;">Public</label>
+    <mat-slide-toggle #dt name="public"
+    [color]="'accent'"
+    [(ngModel)]="Route.isShared"
+    ></mat-slide-toggle>
+    </div>
+    <div id="dist">Distance: {{Route.distance}}m</div>
+  <br>
+  
+</form>

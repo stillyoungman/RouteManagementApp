@@ -13,15 +13,17 @@
     <!-- </div> -->
     </div>
     <div id="route-buttons" *ngIf="isFinished">
-      <button class="btn waves-effect waves-light blue-grey lighten-1" (click)="save();">
+      <button class="btn waves-effect waves-light blue-grey lighten-1" (click)="fillRoute()">
         Route
         <i class="material-icons right">timeline</i>
       </button>
-      <button class="btn waves-effect waves-light blue-grey lighten-1" >
+      <button class="btn waves-effect waves-light blue-grey lighten-1" (click)="clearMap()">
         Clear
         <i class="material-icons right">clear</i>
       </button>
-      <button class="btn waves-effect waves-light blue-grey lighten-1" >
+      <button class="btn waves-effect waves-light blue-grey lighten-1" 
+        (click)="print()"
+        >
         Print
         <i class="material-icons right">print</i>
       </button>

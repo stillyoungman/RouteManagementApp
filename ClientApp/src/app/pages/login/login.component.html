@@ -1,18 +1,33 @@
 <div id="wrap">
 <h3>Sign In</h3>
+<form [formGroup]="authForm">
 <div class="input-field col s6">
-  <input id="login" type="email">
+  <input id="login"
+    type="email"
+    formControlName="email">
   <label for="login">Email</label>
 </div>
 <div class="input-field col s6">
-  <input id="password" type="password">
+  <input id="password" 
+    type="password"
+    formControlName="password">
   <label for="password">Password</label>
 </div>
+</form>
 <div class="btns">
-<button class="btn waves-effect waves-light grey lighten-1" (click)="cancel()">
+<button class="btn waves-effect waves-light grey lighten-1" 
+  (click)="cancel()">
   <i class="material-icons">close</i>
-</button><button class="btn waves-effect waves-light green lighten-1" >
+</button>
+<button class="btn waves-effect waves-light green lighten-1" 
+  (click)="login()" 
+  [disabled]="authForm.invalid ? ' ' : null"
+  >
   <i class="material-icons" style="margin:0 15px">arrow_forward_ios</i>
 </button>
+</div>
+<p class="error-message" *ngIf="errorMessage">{{errorMessage}}</p>
+<div *ngIf='loading && !authService.errorMessage' id="progress">
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
 </div>
 </div>

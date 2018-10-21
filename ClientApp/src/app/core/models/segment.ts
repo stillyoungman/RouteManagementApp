@@ -3,7 +3,7 @@
 import { Section } from "./section";
 import { IElement } from "../interfaces/IElement";
 import { createProperties } from "../static";
-// import { } from '@types/googlemaps';
+import { Marker } from "./marker";
 
 
 export class Segment implements IElement {
@@ -62,6 +62,9 @@ export class Segment implements IElement {
         }
         else return this.computeDistance();
     }
+    set distance(value){
+        this._distance = value;
+    }
     computeDistance(): number{
         let result = 0;
         this.sections.forEach(value => {
@@ -100,15 +103,29 @@ export class Segment implements IElement {
         };
 
         if(this.isTimeRequired && this.travelTime){
-            result.properties["time"];
+            result.properties["time"] = this.travelTime;
         }
         if(this.isDateRequired && this.date){
-            result.properties["date"];
+            result.properties["date"] = this.date;
         }
 
         createProperties(result);
         
         return result;
+    }
+
+    static deserialize(input):Segment{
+        let segment:Segment = Object.assign(new Segment(null),input);
+        if (input.properties){
+            segment = Object.assign(segment,JSON.parse(input.properties))
+        }
+        segment.sections = [];
+        input.sections.forEach(section => {
+            let s = Section.deserialize(section, null);
+            // s.marker = Marker.deserialize(section.marker);
+            segment.sections.push(s);
+        })
+        return segment;
     }
 
 

@@ -1,21 +1,29 @@
-<div id="layout-topbar">
-  <a (click)="logoLink()">
+<div #topbar
+    id="layout-topbar">
+
+  <a (click)="logoLink()" id="logo-wrap">
       <span class="logo">
           <img  src="../../assets/app-logo.png" alt="home">
         </span>
-        <!-- <div id="name">Easy way</div> -->
   </a>
-  
-  <div class="menu" >
-    <div *ngIf="true" class="auth">
-      <!-- <div class="btn">Sign In</div> -->
-      <button mat-button class="mbtn" (click)="login()">
-        Sign In
-      </button>
-      <div style="margin:0;">or</div>
-      
-      <button mat-button class="mbtn" (click)="create()">Create Account</button>
-    </div>
-    <div *ngIf="false" class="profile">Profile</div>
+
+  <div 
+    class="search-wrapper" 
+    *ngIf='isSearchRequired'>
+     
+    <input #s
+        id="search" 
+        type="text" 
+        [placeholder]="url === '/create-route' ? 'Search place...' : 'Find route'"
+        (keyup)="searchKeyup(s.value)">
+    
+    <div id="icon">
+        <i class="material-icons">
+            search
+            </i>
+          </div>
   </div>
+
+      <auth-card></auth-card>
+
 </div>

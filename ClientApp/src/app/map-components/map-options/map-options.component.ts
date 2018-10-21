@@ -8,14 +8,19 @@ import { MapService } from '../../core/services/map.service';
 })
 export class MapOptionsComponent implements OnInit {
 
-  constructor(private mapService: MapService) { }
+  constructor(private ms: MapService) { }
 
   ngOnInit() {
 
   }
 
+  get type(){
+    // console.log(this.mapService.type);
+    return this.ms.markerType;
+  }
+
   changeType(type){
-    this.mapService.type = type;
+    this.ms.type = type;
   }
 
 }

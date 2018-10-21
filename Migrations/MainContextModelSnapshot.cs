@@ -25,7 +25,9 @@ namespace RouteManagementApp.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("LatLang");
+                    b.Property<string>("Comment");
+
+                    b.Property<string>("Location");
 
                     b.Property<string>("Name");
 
@@ -43,6 +45,16 @@ namespace RouteManagementApp.Migrations
                     b.Property<int>("RouteId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Bounds");
+
+                    b.Property<string>("Created");
+
+                    b.Property<string>("Description");
+
+                    b.Property<int>("Distance");
+
+                    b.Property<string>("Location");
 
                     b.Property<string>("Name");
 
