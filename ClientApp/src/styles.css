@@ -83,3 +83,6 @@ input:not([type]), input[type=text]:not(.browser-default), input[type=password]:
 .hidden-overflow {
     overflow:hidden;
 }
+#progress{
+    margin: 40px 10px 2px 0;
+}
