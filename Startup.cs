@@ -37,7 +37,7 @@ namespace RouteManagementApp
                 configuration.RootPath = "ClientApp/dist";
             });
 
-            services.AddDbContext<MainContext>(options => options.UseSqlServer(Configuration.GetConnectionString("hpDb")));
+            services.AddDbContext<MainContext>(options => options.UseSqlServer(Configuration.GetConnectionString("default")));
 
             services.AddScoped<IRouteRepository, RouteRepository>();
             services.AddScoped<IUserRepository,UserRepository>();
