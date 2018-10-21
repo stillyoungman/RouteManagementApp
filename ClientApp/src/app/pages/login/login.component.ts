@@ -33,7 +33,10 @@ export class LoginComponent implements OnInit {
 
   login(){
     this.loading = true;
-    this.authService.authenticate({email:this.email, password: this.password});
+    this.authService.authenticate({
+      email:this.authForm.controls.email.value, 
+      password: this.authForm.controls.password.value
+    });
   }
 
   get errorMessage(){
