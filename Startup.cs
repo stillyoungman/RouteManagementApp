@@ -45,8 +45,14 @@ namespace RouteManagementApp
             services.AddScoped<IUnitOfWork,UnitOfWork>();
             
             services.AddAutoMapper();
-
-            var key = Encoding.ASCII.GetBytes("mySuperSecretKey!12345678_easy");
+            
+            //configure strongly typed settings object
+            var appSettingsSection = Configuration.GetSection("AppSettings");
+            services.Configure<AppSettings>(appSettingsSection);
+            
+            
+            var appSettings = appSettingsSection.Get<AppSettings>();
+            var key = Encoding.ASCII.GetBytes(appSettings.Secret);
 
             services.AddAuthentication(x =>
             {
